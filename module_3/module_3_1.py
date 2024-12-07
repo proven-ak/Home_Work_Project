@@ -9,6 +9,9 @@ def count_calls():
 
 def string_info(string):
     count_calls()
+    len_str = len(string)
+    up_str = string.upper()
+    tup_str = (len_str, up_str)
     return tup_str
 
 
