@@ -1,20 +1,27 @@
-def send_email(message, recipient, sender = "university.help@gmail.com"):
+def send_email(message, recipient,*, sender = "university.help@gmail.com"):
     suffix = [".com", ".ru", ".net"]
 
     if "@" not in recipient or "@" not in sender:
         print("Невозможно отправить письмо с адреса ", sender, "на адрес ", recipient)
         return
 
-    for sub_suffix in suffix:
-        if sub_suffix not in recipient or sub_suffix not in sender:
-            print("Невозможно отправить письмо с адреса ", sender, "на адрес ", recipient)
-            return
-
     if recipient == sender:
         print("Нельзя отправить письмо самому себе!")
+        return
+
+    if not any(recipient.endswith(sub_suffix) for sub_suffix in suffix):
+        print("Невозможно отправить письмо с адреса ", sender, "на адрес ", recipient)
+        return
+
+    if not any(sender.endswith(sub_suffix) for sub_suffix in suffix):
+        print("Невозможно отправить письмо с адреса ", sender, "на адрес ", recipient)
+        return
 
     if sender == "university.help@gmail.com":
         print("Письмо успешно отправлено с адреса ", sender,  "на адрес ", recipient)
+
+    else:
+        print("НЕСТАНДАРТНЫЙ ОТПРАВИТЕЛЬ! Письмо успешно отправлено с адреса ", sender, "на адрес ", recipient)
 
 
 
