@@ -1,18 +1,25 @@
 def send_email(message, recipient, sender = "university.help@gmail.com"):
     suffix = [".com", ".ru", ".net"]
-    #if recipient.find("@") and sender.find("@"):
+
     if "@" not in recipient or "@" not in sender:
         print("Невозможно отправить письмо с адреса ", sender, "на адрес ", recipient)
- #        for sub_suffix in suffix:
- #           if sender.find(sub_suffix):
+        return
+
+    if recipient == sender :
+        print("Нельзя отправить письмо самому себе!")
+        return
+
+ #   for sub_suffix in suffix:
+ #       if sub_suffix in
  #               if recipient.find(sub_suffix):
  #                   print()
 
 
-
+"""
 send_email('Проверка на email', 'urban.fan#mail.ru', sender='urban.info$gmail.com')
 send_email('Проверка на email', 'urban.fan#mail.ru', sender='urban.info@gmail.com')
 send_email('Проверка на email', 'urban.fan@mail.ru', sender='urban.info$gmail.com')
+"""
 
 send_email('Это сообщение для проверки связи', 'vasyok1337@gmail.com')
 send_email('Вы видите это сообщение как лучший студент курса!', 'urban.fan@mail.ru', sender='urban.info@gmail.com')
