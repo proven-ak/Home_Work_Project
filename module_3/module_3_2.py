@@ -3,11 +3,15 @@ def send_email(message, recipient, sender = "university.help@gmail.com"):
 
     if "@" not in recipient or "@" not in sender:
         print("Невозможно отправить письмо с адреса ", sender, "на адрес ", recipient)
-        return
 
-    if recipient == sender :
+    elif recipient == sender :
         print("Нельзя отправить письмо самому себе!")
-        return
+
+
+
+
+
+
 
  #   for sub_suffix in suffix:
  #       if sub_suffix in
