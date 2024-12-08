@@ -9,8 +9,8 @@ print_params(c=[1, 2, 3])
 
 
 # 2. Распаковка параметров.
+values_dict = dict(zip(key_list, values_list))
 
 
 # 3. Распаковка + отдельные параметры.
-
 
