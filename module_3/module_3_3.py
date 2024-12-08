@@ -13,4 +13,6 @@ values_dict = dict(zip(key_list, values_list))
 
 
 # 3. Распаковка + отдельные параметры.
+values_list_2 = [54.32, 'Строка']
 
+print_params(*values_list_2, c=42)
