@@ -3,6 +3,17 @@
 def single_root_words (root_word, *other_words):
     same_words = []
 
+    same_words = other_words
+
+    for root in same_words:
+
+
+
+
+
+
+
+
     return same_words
 
 result1 = single_root_words('rich', 'richiest', 'orichalcum', 'cheers', 'richies')
