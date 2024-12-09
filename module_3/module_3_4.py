@@ -7,6 +7,8 @@ def single_root_words (root_word, *other_words):
 
     for root in same_words:
 
+        if root_word in root or root in root_word:
+
 
 
 
