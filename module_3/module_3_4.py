@@ -6,17 +6,21 @@ def single_root_words (root_word, *other_words):
     # Список для хранения слов с совпадением
     same_words = []
 
+    # Переводим строку в верхний регистр
+    root_word_upper = root_word.upper()
+
     # Перебор всех слов из other_words.
-    for root in other_words:
+    for word in other_words:
 
         # Сравнение слов в верхнем регистре для проверки содержания.
-        if root_word.upper() in root.upper() or root.upper() in root_word.upper():
+        if word.upper() in root_word_upper or root_word_upper in word.upper():
 
             # Если есть совпадение, добавляем слово в список.
-            same_words.append(root)
+            same_words.append(word)
 
     # Возвращаем список найденных слов
     return same_words
+
 
 # Тест функции.
 result1 = single_root_words('rich', 'richiest', 'orichalcum', 'cheers', 'richies')
