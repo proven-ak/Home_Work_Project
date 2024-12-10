@@ -15,31 +15,22 @@ data_structure = [
 #data_structure = ["a", "b", "c"]                # list - список
 
 result = 0
-ddd = ("a", "b", "c")
-print(type(ddd))
-
 def calculate_structure_sum(data):
     global result
 
     if type(data) == dict:
         data = list(data.items())
-        print("dict", type(data), data)
 
     if type(data) == set:
         data = list(data)
-        print("set", type(data), data)
 
     if type(data) == tuple:
         data = list(data)
-        print("tuple", type(data), data)
 
     if type(data) == list:
-        print("data", data)
         copy_data = list(data)
 
         for item in copy_data:
-
-            print("item = ", item, "result = ", result)
 
             if isinstance(item, (int, float)):
                 result += item
@@ -50,11 +41,7 @@ def calculate_structure_sum(data):
             else:
                 calculate_structure_sum(item)
 
-    print(result)
-    print("-------------------")
-
     return result
-
 
 
 result = calculate_structure_sum(data_structure)
