@@ -12,11 +12,12 @@
 #data_structure = [1, 2, 3]                      # list - список
 data_structure = ["a", "b", "c"]                # list - список
 
-
-
+result = 0
 
 
 def calculate_structure_sum(data):
+
+    global result
 
     if type(data) == dict:
 
@@ -35,7 +36,10 @@ def calculate_structure_sum(data):
         num_data = [item for item in data if isinstance(item, (int, float))]
         str_data = [item for item in data if isinstance(item, (str))]
 
+        result += len(num_data) + len(str_data)
+
         print(num_data, str_data)
+        print(len(num_data), len(str_data))
 
         print("list", type(data), data)
 
