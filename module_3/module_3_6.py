@@ -8,9 +8,9 @@
 # ]
 
 #data_structure = {1: "a", 2: "b", 3: "c"}         # dict - словарь
-data_structure = {"a", "b", "c"}                # set - множество
-# data_structure = [1, 2, 3]                      # list - список
-# data_structure = ["a", "b", "c"]                # list - список
+#data_structure = {"a", "b", "c"}                # set - множество
+#data_structure = [1, 2, 3]                      # list - список
+data_structure = ["a", "b", "c"]                # list - список
 
 
 
@@ -24,11 +24,23 @@ def calculate_structure_sum(data):
         data = list(data.items())
         print("dict", type(data), data)
 
-    if type(data) == set:
+    elif type(data) == set:
 
         print("set", type(data))
         data = list(data)
         print("set", type(data), data)
+
+    if type(data) == list:
+
+        num_data = [item for item in data if isinstance(item, (int, float))]
+        str_data = [item for item in data if isinstance(item, (str))]
+
+        print(num_data, str_data)
+
+        print("list", type(data), data)
+
+
+
 
 
 
