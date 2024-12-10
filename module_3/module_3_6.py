@@ -7,8 +7,8 @@
 #     ((), [{(2, 'Urban', ('Urban2', 35))}])
 # ]
 
-data_structure = {1: "a", 2: "b", 3: "c"}         # dict - словарь
-# data_structure = {"a", "b", "c"}                # set - множество
+#data_structure = {1: "a", 2: "b", 3: "c"}         # dict - словарь
+data_structure = {"a", "b", "c"}                # set - множество
 # data_structure = [1, 2, 3]                      # list - список
 # data_structure = ["a", "b", "c"]                # list - список
 
@@ -18,11 +18,18 @@ data_structure = {1: "a", 2: "b", 3: "c"}         # dict - словарь
 
 def calculate_structure_sum(data):
 
+    if type(data) == dict:
+
+        print("dict", type(data))
+        data = list(data.items())
+        print("dict", type(data), data)
+
     if type(data) == set:
 
         print("set", type(data))
-        data = list(data.items())
+        data = list(data)
         print("set", type(data), data)
+
 
 
     # if type(data) == "set":
