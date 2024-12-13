@@ -1,20 +1,5 @@
 # Домашняя работа по уроку "Модули и пакеты"
 
-"""
-import module2                      # Импорт пространства имен module2
-import module2 as m2                # Импорт пространства имен module2 как m2
-from module2 inport a, b, say_hi    # Импорт некоторых имен
-from module_2 import *              # Импорт всех имен
-
-def main():
-    a = 5
-    b = 10
-    print("Привет")
-
-if __name__ == "__main__":          № Проверка если запущен этот модуль
-    main()                          № Вызываем def если запущен этот модуль
-"""
-
 def main():
 
     from fake_math import divide as fake_divide
