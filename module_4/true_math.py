@@ -24,3 +24,6 @@ def divide(first, second):
 
     # Возвращаем результат (число или inf)
     return result
+
+    # В одну строку
+    # return first / second if second != 0 else inf if first > 0 else -inf
