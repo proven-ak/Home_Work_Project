@@ -8,6 +8,7 @@ def divide(first, second):
         result = first / second
 
     else:
-        result = inf
+
+        result = inf if first > 0 else -inf
 
     return result
