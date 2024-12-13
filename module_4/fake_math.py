@@ -1,7 +1,5 @@
-
 # Функция выполняет деление двух чисел, обрабатывая случай деления на ноль.
 def divide(first, second):
-
     """
     first - делимое
     second - делитель
@@ -18,4 +16,7 @@ def divide(first, second):
         result = "Ошибка"
 
     # Возвращаем результат (число или сообщение об ошибке)
-    return result
+        return result
+
+    # В одну строку
+    # return first / second if second != 0 else "Ошибка"
