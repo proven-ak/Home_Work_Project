@@ -59,19 +59,19 @@ print(h1)
 print(h2)
 
 
-print(h1 == h2)     #__eq__
+print(h1 == h2)     # __eq__
 
 
 h1 = h1 + 10
 print(h1)
-print(h1 == h2)     #__add__
+print(h1 == h2)     # __add__
 
 
-h1 += 10            #__iadd__
+h1 += 10            # __iadd__
 print(h1)
 
 
-h2 = 10 + h2        #__radd__
+h2 = 10 + h2        # __radd__
 print(h2)
 
 
