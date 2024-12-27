@@ -1,9 +1,22 @@
 
 class House:
+    houses_history = []
+
+    def __new__(cls, *args, **kwargs):
+        # Создаем новый объект
+        instance = super().__new__(cls)
+        return instance
+
     # Конструктор класса. Инициализирует имя дома и количество этажей.
     def __init__(self, name, number_of_floors):
-        self.name = name  # Название дома
-        self.number_of_floors = number_of_floors  # Общее количество этажей в доме
+        self.name = name                                    # Название дома
+        self.number_of_floors = number_of_floors            # Общее количество этажей в доме
+        self.__class__.houses_history.append(self.name)     # Добавляем имя дома в историю
+
+    def __del__(self):
+        # Удаляем объект, но оставляем в списке houses_history
+        print(f'{self.name} снесён, но он останется в истории')
+
 
     # Метод для перехода на указанный этаж
     def go_to(self, new_floor):
@@ -58,11 +71,27 @@ h2 = House('ЖК Акация', 20)
 print(House.houses_history)
 
 h3 = House('ЖК Матрёшки', 20)
+
+# Выводим список построенных домов
 print(House.houses_history)
 
-# Удаление объектов
-del h2
-del h3
+del h2      # Удаление 'ЖК Акация'
+del h3      # Удаление 'ЖК Матрёшки'
 
+# Выводим список построенных домов
 print(House.houses_history)
+
+del h1      # Удаление 'ЖК Эльбрус'
+
+
+"""
+Вывод на консоль:
+['ЖК Эльбрус']
+['ЖК Эльбрус', 'ЖК Акация']
+['ЖК Эльбрус', 'ЖК Акация', 'ЖК Матрёшки']
+ЖК Акация снесён, но он останется в истории
+ЖК Матрёшки снесён, но он останется в истории
+['ЖК Эльбрус', 'ЖК Акация', 'ЖК Матрёшки']
+ЖК Эльбрус снесён, но он останется в истории
+"""
 
