@@ -59,6 +59,29 @@ class UrTube:
         self.videos = videos
         self.current_user = current_user
 
+    def log_in(self, nickname, password, users, current_user):
+        """
+        Метод принимает на вход аргументы:
+        nickname, password и пытается найти пользователя в users с такими же
+        логином и паролем. Если такой пользователь существует,
+        то current_user меняется на найденного.
+        Password передаётся в виде строки, а сравнивается по хэшу.
+        """
+        # nickname - логин пользователя
+        # password - пароль пользователя
+        # users - список пользователей
+        # current_user - текущий пользователь, User
+
+
+    def add(self, v1, v2, videos):
+        """
+        Метод принимает неограниченное кол-во объектов класса Video
+        и все добавляет в videos, если с таким же названием видео ещё
+        не существует. В противном случае ничего не происходит/
+        """
+
+        return videos
+
 
 # Код для проверки
 if __name__ == "__main__":
@@ -90,13 +113,13 @@ if __name__ == "__main__":
     # Вывод списка видео на консоль
     print(videos)
 
-    """
-    ur = UrTube(users, )
+    # Создание объектов UrTube
+    ur = UrTube(users, videos, current_user=us1)
 
+    # Добавление видео
+    ur.add(v1, v2)
 
-# Добавление видео
-ur.add(v1, v2)
-
+"""
 # Проверка поиска
 print(ur.get_videos('лучший'))
 print(ur.get_videos('ПРОГ'))
