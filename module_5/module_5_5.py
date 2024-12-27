@@ -89,17 +89,37 @@ class UrTube:
         """
         # current_user - текущий пользователь, User
 
-
     def add(self, videos, *video_list):
         """
         Метод принимает неограниченное кол-во объектов класса Video
         и все добавляет в videos, если с таким же названием видео ещё
         не существует. В противном случае ничего не происходит/
         """
+        # videos - список объектов Video
+        # video_list - добавляемый список объектов Video
+        # video_item - элемент списка объектов Video
+
         for video_item in video_list:
             if video_item not in videos:
                 videos.append(video_item)
         return videos
+
+    def get_videos(self, get_str):
+        """
+        Метод производит поиск строки get_str без учета регистра
+        в списке видео. Если есть совпадение возвращает список видео.
+        """
+        # get_str - строка для поиска в списке объектов videos
+        # videos - список объектов Video
+        # video - элемент списка videos
+
+        for video in self.videos:
+            if get_str.lower() in video.title.lower():
+                return video
+
+
+
+
 
 
 # Код для проверки
@@ -119,7 +139,7 @@ if __name__ == "__main__":
     users.append(us3)
 
     # Вывод списка пользователей на консоль
-    print("users :", users)
+    print("-----users :", users)
 
     # Создание объектов Video
     v1 = Video('Лучший язык программирования 2024 года', 200, 0, False)
@@ -130,22 +150,23 @@ if __name__ == "__main__":
     videos.append(v2)
 
     # Вывод списка видео на консоль
-    print("videos: ", videos)
+    print("-----videos: ", videos)
 
     # Создание объектов UrTube
     ur = UrTube(users, videos, current_user=us1)
 
-    print("ur: ", ur)
+    print("-----ur: ", ur)
 
     # Добавление видео
     ur.add(videos, v1, v2)
 
-    print("ur.add: ", ur)
-"""
-# Проверка поиска
-print(ur.get_videos('лучший'))
-print(ur.get_videos('ПРОГ'))
+    print("-----ur.add: ", ur)
 
+    # Проверка поиска
+    print(ur.get_videos('лучший'))
+    print(ur.get_videos('ПРОГ'))
+
+"""
 # Проверка на вход пользователя и возрастное ограничение
 ur.watch_video('Для чего девушкам парень программист?')
 ur.register('vasya_pupkin', 'lolkekcheburek', 13)
