@@ -83,6 +83,11 @@ class UrTube:
         # nickname - логин пользователя
         # password - пароль пользователя
         # age - возраст пользователя
+    def log_out(self, current_user):
+        """
+        Метод log_out для сброса текущего пользователя на None.
+        """
+        # current_user - текущий пользователь, User
 
 
     def add(self, v1, v2, videos):
