@@ -120,6 +120,16 @@ class UrTube:
                 result.append(video.title)
         return result
 
+    def watch_video(self, video_str):
+        """
+        Метод по названию видео возвращает его объект Video
+        """
+        # videos - список объектов Video
+        # video_item - элемент списка объектов Video
+
+        for video_item in videos:
+            if video_str == video_item.title:
+                return video_item
 
 
 
@@ -169,15 +179,15 @@ if __name__ == "__main__":
     print(ur.get_videos('лучший'))
     print(ur.get_videos('ПРОГ'))
 
+
+    # Проверка на вход пользователя и возрастное ограничение
+    ur.watch_video('Для чего девушкам парень программист?')
+    ur.register('vasya_pupkin', 'lolkekcheburek', 13)
+    ur.watch_video('Для чего девушкам парень программист?')
+    ur.register('urban_pythonist', 'iScX4vIJClb9YQavjAgF', 25)
+    ur.watch_video('Для чего девушкам парень программист?')
+
 """
-# Проверка на вход пользователя и возрастное ограничение
-ur.watch_video('Для чего девушкам парень программист?')
-ur.register('vasya_pupkin', 'lolkekcheburek', 13)
-ur.watch_video('Для чего девушкам парень программист?')
-ur.register('urban_pythonist', 'iScX4vIJClb9YQavjAgF', 25)
-ur.watch_video('Для чего девушкам парень программист?')
-
-
 
 # Проверка входа в другой аккаунт
 
