@@ -37,6 +37,16 @@ class Video:
         self.time_now = time_now
         self.adult_mode = adult_mode
 
+    def __add__(self, videos):
+        """
+        Добавляет объект Video в список, если его там еще нет.
+        videos - список объектов Video.
+        """
+        # Проверяем наличие video в списке
+        if self not in users:
+            videos.append(self)
+        return videos
+
 
 class UrTube:
     def __init__(self, users, videos, current_user):
@@ -61,7 +71,7 @@ if __name__ == "__main__":
     us2 = User(nickname="Petrov", password=1234, age=22)
     us3 = User(nickname="Sidorov", password=12345, age=23)
 
-    # Добавление пользователей
+    # Добавление пользователей в список users
     us1 + users
     us2 + users
     us3 + users
@@ -69,14 +79,18 @@ if __name__ == "__main__":
     # Вывод списка пользователей на консоль
     print(users)
 
-
-    """
+    # Создание объектов Video
     v1 = Video('Лучший язык программирования 2024 года', 200, 0, False)
     v2 = Video('Для чего девушкам парень программист?', 10, 0, adult_mode=True)
 
+    # Добавление видео в список videos
     v1 + videos
     v2 + videos
 
+    # Вывод списка видео на консоль
+    print(videos)
+
+    """
     ur = UrTube(users, )
 
 
