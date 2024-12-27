@@ -113,9 +113,12 @@ class UrTube:
         # videos - список объектов Video
         # video - элемент списка videos
 
+        result =[]
+
         for video in self.videos:
             if get_str.lower() in video.title.lower():
-                return video
+                result.append(video.title)
+        return result
 
 
 
@@ -139,7 +142,7 @@ if __name__ == "__main__":
     users.append(us3)
 
     # Вывод списка пользователей на консоль
-    print("-----users :", users)
+    #print("-----users :", users)
 
     # Создание объектов Video
     v1 = Video('Лучший язык программирования 2024 года', 200, 0, False)
@@ -150,17 +153,17 @@ if __name__ == "__main__":
     videos.append(v2)
 
     # Вывод списка видео на консоль
-    print("-----videos: ", videos)
+    #print("-----videos: ", videos)
 
     # Создание объектов UrTube
     ur = UrTube(users, videos, current_user=us1)
 
-    print("-----ur: ", ur)
+    #print("-----ur: ", ur)
 
     # Добавление видео
     ur.add(videos, v1, v2)
 
-    print("-----ur.add: ", ur)
+    #print("-----ur.add: ", ur)
 
     # Проверка поиска
     print(ur.get_videos('лучший'))
