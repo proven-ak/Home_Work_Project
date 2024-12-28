@@ -99,6 +99,13 @@ class UrTube:
         """
         # current_user - текущий пользователь, User
 
+        if self.current_user:
+            print(f"Пользователь {self.current_user.nickname} вышел из системы.")
+            self.current_user = None
+        else:
+            print("Никто не вошел в систему.")
+
+
     def add(self, *video_list):
         """
         Метод принимает неограниченное кол-во объектов класса Video
