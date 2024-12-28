@@ -27,12 +27,12 @@ class Video:
     adult_mode = False
 
     def __init__(self, title, duration, time_now, adult_mode):
-        
+
         # title - заголовок, строка
         # duration - продолжительность, секунды
         # time_now - секунда остановки (изначально 0)
         # adult_mode - ограничение по возрасту, bool (False по умолчанию)
-       
+
         self.title = title
         self.duration = duration
         self.time_now = time_now
@@ -54,11 +54,11 @@ class Video:
 
 class UrTube:
     def __init__(self, users, videos, current_user):
-        
+
         # users - список объектов User
         # videos - список объектов Video
         # current_user - текущий пользователь, User
-        
+
         self.users = users
         self.videos = videos
         self.current_user = current_user
@@ -83,11 +83,19 @@ class UrTube:
         После успешной регистрации, вход выполняется автоматически
         (current_user становится зарегистрированным пользователем).
         """
+
+        # Проверка возраста текущего пользователя.
+        if age < 18:
+            print("Вам нет 18 лет, пожалуйста покиньте страницу")
+            return
+
         # Проверка наличия пользователя с таким же nickname
         for user in self.users:
             if user.nickname == nickname:
-                print(f"Пользователь {nickname} уже существует.")
+                print("Войдите в аккаунт, чтобы смотреть видео")
                 return
+
+        # Регистрация нового пользователя
         new_user = User(nickname, password, age)
         self.users.append(new_user)
         self.current_user = new_user
@@ -181,23 +189,19 @@ if __name__ == "__main__":
     print(ur.get_videos('ПРОГ'))
 
     # Проверка на вход пользователя и возрастное ограничение
+    ur.watch_video('Для чего девушкам парень программист?')
+    ur.register('vasya_pupkin', 'lolkekcheburek', 13)
+    ur.watch_video('Для чего девушкам парень программист?')
+    ur.register('urban_pythonist', 'iScX4vIJClb9YQavjAgF', 25)
     # ur.watch_video('Для чего девушкам парень программист?')
-    # ur.register('vasya_pupkin', 'lolkekcheburek', 13)
-    # ur.watch_video('Для чего девушкам парень программист?')
-    # ur.register('urban_pythonist', 'iScX4vIJClb9YQavjAgF', 25)
-    # ur.watch_video('Для чего девушкам парень программист?')
 
-"""
+    # Проверка входа в другой аккаунт
+    # ur.register('vasya_pupkin', 'F8098FM8fjm9jmi', 55)
+    # print(ur.current_user)
 
-# Проверка входа в другой аккаунт
-ur.register('vasya_pupkin', 'F8098FM8fjm9jmi', 55)
-print(ur.current_user)
+    # Попытка воспроизведения несуществующего видео
+    # ur.watch_video('Лучший язык программирования 2024 года!')
 
-
-
-# Попытка воспроизведения несуществующего видео
-ur.watch_video('Лучший язык программирования 2024 года!')
-"""
 
 """
 Вывод в консоль:
