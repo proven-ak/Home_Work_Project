@@ -93,7 +93,7 @@ class UrTube:
         self.current_user = new_user
         print(f"Пользователь {nickname} успешно зарегистрирован и вошел в систему.")
 
-    def log_out(self, current_user):
+    def log_out(self):
         """
         Метод log_out для сброса текущего пользователя на None.
         """
@@ -102,9 +102,6 @@ class UrTube:
         if self.current_user:
             print(f"Пользователь {self.current_user.nickname} вышел из системы.")
             self.current_user = None
-        else:
-            print("Никто не вошел в систему.")
-
 
     def add(self, *video_list):
         """
