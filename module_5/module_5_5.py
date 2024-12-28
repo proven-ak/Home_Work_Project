@@ -25,6 +25,9 @@ class User:
             users.append(self)
         return users
 
+    def __str__(self):
+        return self.nickname  # Вернем только имя пользователя
+
 
 class Video:
     time_now = 0
@@ -111,7 +114,9 @@ class UrTube:
         hashed_password = hashlib.sha256(password.encode()).hexdigest()
         new_user = User(nickname, hashed_password, age)
         self.users.append(new_user)
-        self.current_user = new_user
+
+        # Авторизация сразу после регистрации
+        self.log_in(nickname, password)
 
     def log_out(self):
         """
