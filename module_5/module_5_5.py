@@ -133,9 +133,10 @@ class UrTube:
         # video_item - элемент списка объектов Video
 
         for video_item in video_list:
-            if video_item not in videos:
-                videos.append(video_item)
-        return videos
+            # Проверяем, есть ли видео с таким же названием в списке
+            if video_item.title not in [v.title for v in self.videos]:
+                self.videos.append(video_item)
+        return self.videos
 
     def get_videos(self, get_str):
         """
