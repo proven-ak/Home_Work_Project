@@ -1,4 +1,5 @@
 
+# Импортируем библиотеки
 from time import sleep
 import hashlib
 
@@ -14,18 +15,24 @@ class User:
         self.password = password
         self.age = age
 
-    def add(self, users):
+    def add(self, users_):
         """
         Добавляет объект User в список, если его там еще нет
-        users - список объектов User.
         """
+
+        # users - список объектов User.
+
         # Проверяем наличие пользователя в списке, если отсутствует
         # добавляем в список
-        if self not in users:
+        if self not in users_:
             users.append(self)
-        return users
+        return users_
 
     def __str__(self):
+        """
+        Переопределение строкового представления объекта при выводе на экран
+        или преобразование в строку с помощью функции str()
+        """
         return self.nickname  # Вернем только имя пользователя
 
 
@@ -45,7 +52,7 @@ class Video:
         self.time_now = time_now
         self.adult_mode = adult_mode
 
-    def add(self, videos, *video_list):
+    def __add__(self, videos_, *video_list):
         """
         Добавляет объект Video в список, если его там еще нет.
         """
@@ -53,20 +60,20 @@ class Video:
         # video_list - список добавляемых видео
 
         for video in video_list:
-            if video.title not in [v.title for v in videos]:
-                videos.append(video)
-        return videos
+            if video.title not in [v.title for v in videos_]:
+                videos_.append(video)
+        return videos_
 
 
 class UrTube:
-    def __init__(self, users, videos, current_user):
+    def __init__(self, users_, videos_, current_user):
 
         # users - список объектов User
         # videos - список объектов Video
         # current_user - текущий пользователь, User
 
-        self.users = users
-        self.videos = videos
+        self.users = users_
+        self.videos = videos_
         self.current_user = current_user
 
     def log_in(self, nickname, password):
@@ -84,7 +91,7 @@ class UrTube:
         for user in self.users:
             if user.nickname == nickname and user.password == hashed_password:
                 self.current_user = user  # Устанавливаем текущего пользователя
-                print(f"Пользователь {nickname} успешно авторизован.")
+                # print(f"Пользователь {nickname} успешно авторизован.")
                 return
 
         # Если пользователь не найден или пароль неверный
@@ -98,11 +105,6 @@ class UrTube:
         (current_user становится зарегистрированным пользователем).
         """
 
-        # Проверка возраста текущего пользователя.
-        if age < 18:
-            print("Вам нет 18 лет, пожалуйста покиньте страницу")
-            return
-
         # Проверка наличия пользователя с таким же nickname
         for user in self.users:
             if user.nickname == nickname:
@@ -110,7 +112,7 @@ class UrTube:
                 return
 
         # Регистрация нового пользователя
-        # Хэширование пароля
+        # Хеширование пароля
         hashed_password = hashlib.sha256(password.encode()).hexdigest()
         new_user = User(nickname, hashed_password, age)
         self.users.append(new_user)
@@ -152,7 +154,7 @@ class UrTube:
         # videos - список объектов Video
         # video - элемент списка videos
 
-        result =[]
+        result = []
 
         for video in self.videos:
             if get_str.lower() in video.title.lower():
@@ -166,9 +168,8 @@ class UrTube:
         После завершения воспроизведения текущее время просмотра видео сбрасывается.
         """
         # Проверка авторизации
-        # print("&&&&&self.current_user", self.current_user)
         if not self.current_user:
-            print("****Войдите в аккаунт, чтобы смотреть видео")
+            print("Войдите в аккаунт, чтобы смотреть видео")
             return
 
         # Поиск видео
@@ -190,29 +191,15 @@ class UrTube:
                 return
 
         # Если видео не найдено
-        print("Видео не найдено.")
+        # print("Видео не найдено.")
 
 
 # Код для проверки
 if __name__ == "__main__":
 
     # Инициализация переменных.
-    users = []            # Список пользователей
+    users = []              # Список пользователей
     videos = []             # Список видео
-
-
-    # Создание объектов User
-    # us1 = User(nickname="Ivanov", password=123, age=21)
-    # us2 = User(nickname="Petrov", password=1234, age=22)
-    # us3 = User(nickname="Sidorov", password=12345, age=23)
-
-    # Добавление пользователей в список users
-    # users.append(us1)
-    # users.append(us2)
-    # users.append(us3)
-
-    # Вывод списка пользователей на консоль
-    # print("-----users :", users)
 
     # Создание объектов Video
     v1 = Video('Лучший язык программирования 2024 года', 200, 0, False)
@@ -222,7 +209,7 @@ if __name__ == "__main__":
     ur = UrTube(users, videos, current_user=None)
 
     # Добавление видео
-    ur.add(v1,v2)
+    ur.add(v1, v2)
 
     # Проверка поиска
     print(ur.get_videos('лучший'))
