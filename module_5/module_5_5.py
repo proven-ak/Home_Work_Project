@@ -1,3 +1,5 @@
+from time import sleep
+
 
 class User:
     def __init__(self, nickname, password, age):
@@ -99,7 +101,7 @@ class UrTube:
         new_user = User(nickname, password, age)
         self.users.append(new_user)
         self.current_user = new_user
-        print(f"Пользователь {nickname} успешно зарегистрирован и вошел в систему.")
+        # print(f"Пользователь {nickname} успешно зарегистрирован и вошел в систему.")
 
     def log_out(self):
         """
@@ -143,22 +145,28 @@ class UrTube:
 
     def watch_video(self, video_str):
         """
-        Метод watch_video, который принимает название фильма,
-        если не находит точного совпадения(вплоть до пробела),
-        то ничего не воспроизводится,
-        если же находит - ведётся отчёт в консоль на какой секунде ведётся просмотр.
-        После текущее время просмотра данного видео сбрасывается.
+        Метод watch_video воспроизводит видео с указанным названием, если пользователь авторизован
+        и соответствует возрастным ограничениям. В противном случае выводится сообщение об ошибке.
+        После завершения воспроизведения текущее время просмотра видео сбрасывается.
         """
-        # videos - список объектов Video
-        # video_item - элемент списка объектов Video
+        # Проверка авторизации
+        if not self.current_user:
+            print("Войдите в аккаунт, чтобы смотреть видео")
+            return
 
-        # Поиск видео с точным названием
+        # Поиск видео
         for video_item in self.videos:
             if video_str == video_item.title:
-                # Выводим отсчёт времени просмотра
-                for second in range(video_item.time_now, video_item.duration + 1):
+                # Проверка возрастного ограничения
+                if video_item.adult_mode and self.current_user.age < 18:
+                    print("Вам нет 18 лет, пожалуйста покиньте страницу")
+                    return
+
+                # Воспроизведение видео
+                for second in range(video_item.time_now + 1, video_item.duration + 1):
                     print(second, end=" ", flush=True)
-                print(" Конец видео")
+                    sleep(1)  # Для реалистичного воспроизведения
+                print("Конец видео")
 
                 # Сброс текущего времени просмотра
                 video_item.time_now = 0
@@ -207,7 +215,7 @@ if __name__ == "__main__":
     ur.register('vasya_pupkin', 'lolkekcheburek', 13)
     ur.watch_video('Для чего девушкам парень программист?')
     ur.register('urban_pythonist', 'iScX4vIJClb9YQavjAgF', 25)
-    # ur.watch_video('Для чего девушкам парень программист?')
+    ur.watch_video('Для чего девушкам парень программист?')
 
     # Проверка входа в другой аккаунт
     # ur.register('vasya_pupkin', 'F8098FM8fjm9jmi', 55)
