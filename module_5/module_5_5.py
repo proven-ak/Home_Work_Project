@@ -1,4 +1,6 @@
+
 from time import sleep
+import hashlib
 
 
 class User:
@@ -47,10 +49,9 @@ class Video:
         # videos - список объектов Video.
         # video_list - список добавляемых видео
 
-        for video_init in video_list:
-            if video_init.title not in [video.title for video in self.videos]:
-                self.videos.append(video_init)
-        print("!!!!!!!!videos", videos)
+        for video in video_list:
+            if video.title not in [v.title for v in videos]:
+                videos.append(video)
         return videos
 
 
@@ -65,7 +66,7 @@ class UrTube:
         self.videos = videos
         self.current_user = current_user
 
-    def log_in(self, nickname, password, users, current_user):
+    def log_in(self, nickname, password):
         """
         Метод принимает на вход аргументы:
         nickname, password и пытается найти пользователя в users с такими же
@@ -73,10 +74,18 @@ class UrTube:
         то current_user меняется на найденного.
         Password передаётся в виде строки, а сравнивается по хэшу.
         """
-        # nickname - логин пользователя
-        # password - пароль пользователя
-        # users - список пользователей
-        # current_user - текущий пользователь, User
+        # Хэшируем переданный пароль
+        hashed_password = hashlib.sha256(password.encode()).hexdigest()
+
+        # Ищем пользователя с таким же логином и паролем
+        for user in self.users:
+            if user.nickname == nickname and user.password == hashed_password:
+                self.current_user = user  # Устанавливаем текущего пользователя
+                print(f"Пользователь {nickname} успешно авторизован.")
+                return
+
+        # Если пользователь не найден или пароль неверный
+        print("Неверный логин или пароль.")
 
     def register(self, nickname, password, age):
         """
@@ -94,14 +103,15 @@ class UrTube:
         # Проверка наличия пользователя с таким же nickname
         for user in self.users:
             if user.nickname == nickname:
-                print("Войдите в аккаунт, чтобы смотреть видео")
+                print(f"Пользователь {user.nickname} уже существует")
                 return
 
         # Регистрация нового пользователя
-        new_user = User(nickname, password, age)
+        # Хэширование пароля
+        hashed_password = hashlib.sha256(password.encode()).hexdigest()
+        new_user = User(nickname, hashed_password, age)
         self.users.append(new_user)
         self.current_user = new_user
-        # print(f"Пользователь {nickname} успешно зарегистрирован и вошел в систему.")
 
     def log_out(self):
         """
@@ -150,8 +160,9 @@ class UrTube:
         После завершения воспроизведения текущее время просмотра видео сбрасывается.
         """
         # Проверка авторизации
+        # print("&&&&&self.current_user", self.current_user)
         if not self.current_user:
-            print("Войдите в аккаунт, чтобы смотреть видео")
+            print("****Войдите в аккаунт, чтобы смотреть видео")
             return
 
         # Поиск видео
@@ -180,8 +191,9 @@ class UrTube:
 if __name__ == "__main__":
 
     # Инициализация переменных.
-    users = []          # Список пользователей
-    videos = []         # Список видео
+    users = []            # Список пользователей
+    videos = []             # Список видео
+
 
     # Создание объектов User
     # us1 = User(nickname="Ivanov", password=123, age=21)
@@ -201,7 +213,7 @@ if __name__ == "__main__":
     v2 = Video('Для чего девушкам парень программист?', 10, 0, adult_mode=True)
 
     # Создание объектов UrTube
-    ur = UrTube(users, videos, current_user=[])
+    ur = UrTube(users, videos, current_user=None)
 
     # Добавление видео
     ur.add(v1,v2)
@@ -218,11 +230,11 @@ if __name__ == "__main__":
     ur.watch_video('Для чего девушкам парень программист?')
 
     # Проверка входа в другой аккаунт
-    # ur.register('vasya_pupkin', 'F8098FM8fjm9jmi', 55)
-    # print(ur.current_user)
+    ur.register('vasya_pupkin', 'F8098FM8fjm9jmi', 55)
+    print(ur.current_user)
 
     # Попытка воспроизведения несуществующего видео
-    # ur.watch_video('Лучший язык программирования 2024 года!')
+    ur.watch_video('Лучший язык программирования 2024 года!')
 
 
 """
