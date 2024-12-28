@@ -106,7 +106,6 @@ class UrTube:
         Метод log_out для сброса текущего пользователя на None.
         """
         # current_user - текущий пользователь, User
-
         if self.current_user:
             print(f"Пользователь {self.current_user.nickname} вышел из системы.")
             self.current_user = None
@@ -144,14 +143,29 @@ class UrTube:
 
     def watch_video(self, video_str):
         """
-        Метод по названию видео возвращает его объект Video
+        Метод watch_video, который принимает название фильма,
+        если не находит точного совпадения(вплоть до пробела),
+        то ничего не воспроизводится,
+        если же находит - ведётся отчёт в консоль на какой секунде ведётся просмотр.
+        После текущее время просмотра данного видео сбрасывается.
         """
         # videos - список объектов Video
         # video_item - элемент списка объектов Video
 
-        for video_item in videos:
+        # Поиск видео с точным названием
+        for video_item in self.videos:
             if video_str == video_item.title:
-                return video_item
+                # Выводим отсчёт времени просмотра
+                for second in range(video_item.time_now, video_item.duration + 1):
+                    print(second, end=" ", flush=True)
+                print(" Конец видео")
+
+                # Сброс текущего времени просмотра
+                video_item.time_now = 0
+                return
+
+        # Если видео не найдено
+        print("Видео не найдено.")
 
 
 # Код для проверки
