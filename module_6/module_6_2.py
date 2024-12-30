@@ -1,6 +1,6 @@
 
 class Vehicle:
-    def __init__(self, owner, _model, __engine_power, __color):
+    def __init__(self, owner, _model, __color, __engine_power):
 
         self.owner = owner                      # владелец транспорта (изменяемый)
         self._model = _model                    # модель(марка)транспорта (не изменяемый)
@@ -10,16 +10,19 @@ class Vehicle:
         self.__COLOR_VARIANTS = ['blue', 'red', 'green', 'black', 'white']
 
     def get_model(self):            # возвращает строку: "Модель: <название модели транспорта>"
-        return "Модель: ", self._model
+        return f'Модель: {self._model}'
 
     def get_horsepower(self):       # возвращает строку: "Мощность двигателя: <мощность>"
-        return "Мощность двигателя: ", self.__engine_power
+        return f'Мощность двигателя: {self.__engine_power}'
 
     def get_color(self):            # возвращает строку: "Цвет: <цвет транспорта>"
-        return "Цвет: ", self. get_color
+        return f'Цвет: {self.__color}'
 
-    def print_info(self):           # распечатывает результаты методов(в том же порядке):
-        print(self. get_model())                        # get_model, get_horsepower, get_color;
+    def print_info(self):           # распечатывает результаты методов:
+        print(self.get_model())                         # модель
+        print(self.get_horsepower())                    # мощность двигателя
+        print(self.get_color())                         # цвет
+        print(f'Владелец: {self.owner}')                # владелец
 
     def set_color(self, new_color):
         # принимает аргумент new_color(str), меняет цвет __color на new_color, если
@@ -28,7 +31,6 @@ class Vehicle:
 
         if new_color.lower() in self.__COLOR_VARIANTS:
             self.__color = new_color
-            print("Цвет: ", new_color)
         else:
             print(f'Нельзя сменить цвет на {new_color}')
 
