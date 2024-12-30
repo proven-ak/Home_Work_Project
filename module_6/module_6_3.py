@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 class Animal:               # Класс животных
     def __init__(self,live, sound, _DEGREE_OF_DANGER, speed):
@@ -11,17 +10,19 @@ class Animal:               # Класс животных
 
 
     def move(self, dx, dy, dz):         # изменение координат
+
         # Метод должен менять соответствующие координаты
         # в _cords на dx, dy и dz в том же порядке, где множителем будет являться speed.
         # Если при попытке изменения координаты z в _cords значение будет меньше 0,
         # то выводить сообщение "It's too deep, i can't dive :(", при этом изменения не вносятся.
+
         self.dx = dx
         self.dy = dy
         self.dz = dz
-        pass
 
 
     def get_cords(self):
+
         # который выводит координаты в формате:
         # "X: <координаты по x>, Y: <координаты по y>, Z: <координаты по z>"
         # attack(self), который выводит "Sorry, i'm peaceful :)", если степень опасности меньше 5
@@ -30,15 +31,15 @@ class Animal:               # Класс животных
 
 
 
-class Bird:                 # Класс птиц. Наследуется от Animal
+class Bird(Animal):                 # Класс птиц. Наследуется от Animal
+    def __init__(self, beak):
+        super()__init__(beak)
+        super().beak = True         # наличие клюва
 
-    """
-    Должен обладать атрибутом:
-    beak = True - наличие клюва
-    И методом:
-    lay_eggs(self), который выводит строку
-    "Here are(is) <случайное число от 1 до 4> eggs for you"
-    """
+
+    def lay_eggs(self):
+        # Выводит строку"Here are(is) <случайное число от 1 до 4> eggs for you"
+        pass
 
 
 class AquaticAnimal:        # Класс плавающего животного. Наследуется от Animal
