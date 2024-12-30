@@ -63,3 +63,26 @@ class Duckbill(Bird, AquaticAnimal, PoisonousAnimal):                 # клас
     sound = "Click-click-click" - звук, который издаёт утконос
     """
 
+# Пример работы программы:
+
+db = Duckbill(10)
+print(db.live)
+print(db.beak)
+db.speak()
+db.attack()
+db.move(1, 2, 3)
+db.get_cords()
+db.dive_in(6)
+db.get_cords()
+db.lay_eggs()
+
+"""
+Вывод на консоль:
+True
+True
+Click-click-click
+Be careful, i'm attacking you 0_0
+X: 10 Y: 20 Z: 30
+X: 10 Y: 20 Z: 0
+Here are(is) 3 eggs for you # Число может быть другим (1-4)
+"""
