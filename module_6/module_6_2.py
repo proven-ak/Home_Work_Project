@@ -13,7 +13,7 @@ class Vehicle:
         return "Модель: ", self._model
 
     def get_horsepower(self):       # возвращает строку: "Мощность двигателя: <мощность>"
-        pass
+        return "Мощность двигателя: ", self.__engine_power
 
     def get_color(self):            # возвращает строку: "Цвет: <цвет транспорта>"
         pass
