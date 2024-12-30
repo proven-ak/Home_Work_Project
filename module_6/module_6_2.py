@@ -10,7 +10,7 @@ class Vehicle:
         self.__COLOR_VARIANTS = ['blue', 'red', 'green', 'black', 'white']
 
     def get_model(self):            # возвращает строку: "Модель: <название модели транспорта>"
-        pass
+        return "Модель: ", self._model
 
     def get_horsepower(self):       # возвращает строку: "Мощность двигателя: <мощность>"
         pass
@@ -19,7 +19,7 @@ class Vehicle:
         pass
 
     def print_info(self):           # распечатывает результаты методов(в том же порядке):
-        pass                        # get_model, get_horsepower, get_color;
+        print(self. get_model())                        # get_model, get_horsepower, get_color;
 
     def set_color(self, new_color):
         # принимает аргумент new_color(str), меняет цвет __color на new_color, если
