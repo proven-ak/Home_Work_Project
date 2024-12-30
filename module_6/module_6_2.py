@@ -22,7 +22,27 @@ class Vehicle:
         pass                        # get_model, get_horsepower, get_color;
 
     def set_color(self, new_color):
+        # принимает аргумент new_color(str), меняет цвет __color на new_color, если
+        # он есть в списке __COLOR_VARIANTS, в противном случае выводит на экран надпись:
+        # "Нельзя сменить цвет на <новый цвет>".
+
+        if new_color in self.__COLOR_VARIANTS:
+            self.__color = new_color
+        else:
+            print(f'Нельзя сменить цвет на {new_color}')
+
 
 class Sedan(Vehicle):
     pass
 
+
+"""
+
+    Каждый объект Vehicle должен содержать следующий методы:
+
+
+    а так же владельца в конце в формате "Владелец: <имя>"
+    
+    
+
+"""
