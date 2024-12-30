@@ -16,7 +16,7 @@ class Vehicle:
         return "Мощность двигателя: ", self.__engine_power
 
     def get_color(self):            # возвращает строку: "Цвет: <цвет транспорта>"
-        pass
+        return "Цвет: ", self. get_color
 
     def print_info(self):           # распечатывает результаты методов(в том же порядке):
         print(self. get_model())                        # get_model, get_horsepower, get_color;
