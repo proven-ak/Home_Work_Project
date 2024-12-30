@@ -39,19 +39,21 @@ class Sedan(Vehicle):
     pass
 
 
-# Пример результата выполнения программы:
-vehicle1 = Sedan('Fedos', 'Toyota Mark II', 'blue', 500)
+if __name__ == "__main__":
 
-# Изначальные свойства
-vehicle1.print_info()
+    # Пример результата выполнения программы:
+    vehicle1 = Sedan('Fedos', 'Toyota Mark II', 'blue', 500)
 
-# Меняем свойства (в т.ч. вызывая методы)
-vehicle1.set_color('Pink')
-vehicle1.set_color('BLACK')
-vehicle1.owner = 'Vasyok'
+    # Изначальные свойства
+    vehicle1.print_info()
 
-# Проверяем что поменялось
-vehicle1.print_info()
+    # Меняем свойства (в т.ч. вызывая методы)
+    vehicle1.set_color('Pink')
+    vehicle1.set_color('BLACK')
+    vehicle1.owner = 'Vasyok'
+
+    # Проверяем что поменялось
+    vehicle1.print_info()
 
 """
 Вывод на консоль:
