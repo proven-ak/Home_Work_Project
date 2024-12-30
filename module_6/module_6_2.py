@@ -7,7 +7,7 @@ class Vehicle:
         self.__engine_power = __engine_power    # мощность двигателя (не изменяемый)
         self.__color = __color                  # название цвета (не изменяемый)
 
-        self.__COLOR_VARIANTS = ["Red", "Blue", "Black", "White"]
+        self.__COLOR_VARIANTS = ['blue', 'red', 'green', 'black', 'white']
 
     def get_model(self):            # возвращает строку: "Модель: <название модели транспорта>"
         pass
@@ -36,13 +36,35 @@ class Sedan(Vehicle):
     pass
 
 
+# Пример результата выполнения программы:
+vehicle1 = Sedan('Fedos', 'Toyota Mark II', 'blue', 500)
+
+# Изначальные свойства
+vehicle1.print_info()
+
+# Меняем свойства (в т.ч. вызывая методы)
+vehicle1.set_color('Pink')
+vehicle1.set_color('BLACK')
+vehicle1.owner = 'Vasyok'
+
+# Проверяем что поменялось
+vehicle1.print_info()
+
+"""
+Вывод на консоль:
+
+Модель: Toyota Mark II
+Мощность двигателя: 500
+Цвет: blue
+Владелец: Fedos
+Нельзя сменить цвет на Pink
+Модель: Toyota Mark II
+Мощность двигателя: 500
+Цвет: BLACK
+Владелец: Vasyok
 """
 
-    Каждый объект Vehicle должен содержать следующий методы:
 
-
-    а так же владельца в конце в формате "Владелец: <имя>"
     
     
 
-"""
