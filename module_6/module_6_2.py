@@ -26,8 +26,9 @@ class Vehicle:
         # он есть в списке __COLOR_VARIANTS, в противном случае выводит на экран надпись:
         # "Нельзя сменить цвет на <новый цвет>".
 
-        if new_color in self.__COLOR_VARIANTS:
+        if new_color.lower() in self.__COLOR_VARIANTS:
             self.__color = new_color
+            print("Цвет: ", new_color)
         else:
             print(f'Нельзя сменить цвет на {new_color}')
 
