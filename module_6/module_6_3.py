@@ -1,4 +1,4 @@
-
+import random
 class Animal:               # Класс животных
     def __init__(self, speed):
 
@@ -60,25 +60,34 @@ class Animal:               # Класс животных
         else:
             return f"Be careful, i'm attacking you 0_0"
 
-        # speak(self), который выводит строку со звуком sound.
+
+class Bird(Animal):
+    # Класс птиц. Наследуется от Animal
+    """
+    Bird - класс описывающий птиц. Наследуется от Animal.
+    Должен обладать атрибутом:
+    beak = True - наличие клюва
+    И методом:
+    lay_eggs(self), который выводит строку "Here are(is) <случайное число от 1 до 4> eggs for you"
+    """
+
+    def __init__(self, speed):
+        """
+        Инициализация объекта Bird.
+        :param speed: Скорость передвижения птицы.
+        """
+        super().__init__(speed)  # Инициализация родительского класса Animal
+        self.beak = True  # Атрибут наличия клюва
+
+    def lay_eggs(self):             # откладывание яиц
+        # выводит количество снесенных яиц.
+        eggs = random.randint(1, 4)  # Случайное число от 1 до 4
+        print(f"Here are(is) {eggs} eggs for you")
 
 
-
-class Bird(Animal):                 # Класс птиц. Наследуется от Animal
-    def __init__(self, beak, sound, ):
-        super().__init__(beak)
-        super().beak = True         # наличие клюва
-
-
-    def lay_eggs(self):
-        # Выводит строку"Here are(is) <случайное число от 1 до 4> eggs for you"
-        re
-
-
-class AquaticAnimal:        # Класс плавающего животного. Наследуется от Animal
+class AquaticAnimal(Animal):        # Класс плавающего животного. Наследуется от Animal
     """
     В этом классе атрибут _DEGREE_OF_DANGER = 3.
-
     Должен обладать методом:
     dive_in(self, dz) - где dz изменение координаты z в _cords.
     Этот метод должен всегда уменьшать координату z в _coords.
@@ -86,6 +95,14 @@ class AquaticAnimal:        # Класс плавающего животного
     Скорость движения при нырянии должна уменьшаться в 2 раза,
     в отличии от обычного движения. (speed / 2)
     """
+    def __init__(self, speed):
+        super().__init__(speed)
+        self._DEGREE_OF_DANGER = 3
+
+    def dive_in(self, dz):
+        self._cords[2] -= abs(dz)  # Уменьшаем координату z
+        self.speed /= 2  # Уменьшаем скорость в два раза при нырянии
+
 
 
 class PoisonousAnimal:           # Класс ядовитых животных. Наследуется от Animal.
