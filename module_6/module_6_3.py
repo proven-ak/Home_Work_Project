@@ -1,4 +1,7 @@
+
 import random
+
+
 class Animal:               # Класс животных
     def __init__(self, speed):
 
@@ -50,15 +53,19 @@ class Animal:               # Класс животных
     def get_cords(self):
         # метод выводит координаты в формате:
         # "X: <координаты по x>, Y: <координаты по y>, Z: <координаты по z>"
-        return f"X: {self._cords[0]}, Y: {self._cords[1]}, Z: {self._cords[2]}"
+        print(f"X: {self._cords[0]}, Y: {self._cords[1]}, Z: {self._cords[2]}")
 
     def attack(self):
         # метод выводит "Sorry, i'm peaceful :)", если степень опасности меньше 5
         if self._DEGREE_OF_DANGER < 5:
-            return f"Sorry, i'm peaceful :)"
+            return "Sorry, i'm peaceful :)"
         # метод выводит "Be careful, i'm attacking you 0_0" , если равно или больше.
         else:
-            return f"Be careful, i'm attacking you 0_0"
+            return "Be careful, i'm attacking you 0_0"
+
+    def speak(self):
+        # метод выводит звук
+        print(self.sound)
 
 
 class Bird(Animal):
@@ -100,20 +107,32 @@ class AquaticAnimal(Animal):        # Класс плавающего живот
         self._DEGREE_OF_DANGER = 3
 
     def dive_in(self, dz):
-        self._cords[2] -= abs(dz)  # Уменьшаем координату z
-        self.speed /= 2  # Уменьшаем скорость в два раза при нырянии
+        dz = abs(dz)  # Всегда работаем с положительным значением dz
+        new_z = self._cords[2] - dz * (self.speed / 2)  # Уменьшение Z с учётом уменьшенной скорости
+        if new_z < 0:
+            print("It's too deep, I can't dive :(")
+        else:
+            self._cords[2] = new_z  # Применяем новое значение Z
 
 
-
-class PoisonousAnimal:           # Класс ядовитых животных. Наследуется от Animal.
+class PoisonousAnimal(Animal):           # Класс ядовитых животных. Наследуется от Animal.
     """
     В этом классе атрибут _DEGREE_OF_DANGER = 8.
     """
+    def __init__(self, speed=None):
+        super().__init__(speed)
+        self._DEGREE_OF_DANGER = 8
 
 
 class Duckbill(Bird, AquaticAnimal, PoisonousAnimal):                 # класс утконоса.
-    def __init__(self):
-    sound = "Click-click-click"
+
+    def __init__(self, speed):
+        Animal.__init__(self, speed)
+        Bird.__init__(self, speed)  # Инициализация от Bird (клюв и скорость)
+        AquaticAnimal.__init__(self, speed)  # Инициализация от AquaticAnimal (плавание и скорость)
+        PoisonousAnimal.__init__(self, speed)  # Инициализация от PoisonousAnimal (ядовитость)
+
+        self.sound = "Click-click-click"
 
     """
     
@@ -122,9 +141,7 @@ class Duckbill(Bird, AquaticAnimal, PoisonousAnimal):                 # клас
     Объект этого класса должен обладать одним дополнительным атрибутом:
     sound = "Click-click-click" - звук, который издаёт утконос
     """
-
 # Пример работы программы:
-
 db = Duckbill(10)
 print(db.live)
 print(db.beak)
