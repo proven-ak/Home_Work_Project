@@ -1,12 +1,33 @@
 
 class Animal:               # Класс животных
-    def __init__(self,live, sound, _DEGREE_OF_DANGER, speed):
-        self.live = True                #
-        self.sound = None               # звук(изначально отсутствует)
-        self._DEGREE_OF_DANGER = 0      # степень опасности существа
+    def __init__(self, speed):
 
-        self._cords = [0, 0, 0]         # координаты в пространстве
-        self.speed = speed              # скорость передвижения существа
+        self.live = True                # живое (по умолчанию True)
+        self.sound = None               # звук(по умолчанию отсутствует)
+        self._DEGREE_OF_DANGER = 0      # степень опасности существа (по умолчанию 0)
+
+        self._cords = [0, 0, 0]         # координаты в пространстве(по умолчанию [0, 0, 0])
+        self.speed = speed              # скорость передвижения существа (определяется при создании объекта)
+
+"""
+Необходимо написать 5 классов:
+Animal - класс описывающий животных.
+Класс обладает следующими атрибутами:
+live = True
+sound = None - звук (изначально отсутствует)
+_DEGREE_OF_DANGER = 0 - степень опасности существа
+
+Объект этого класса обладает следующими атрибутами:
+_cords = [0, 0, 0] - координаты в пространстве.
+speed = ... - скорость передвижения существа (определяется при создании объекта)
+
+И методами:
+move(self, dx, dy, dz), который должен менять соответствующие координаты в _cords на dx, dy и dz в том же порядке, где множетелем будет являтся speed. Если при попытке изменения координаты z в _cords значение будет меньше 0, то выводить сообщение "It's too deep, i can't dive :(" , при этом изменения не вносяться.
+get_cords(self), который выводит координаты в формате: "X: <координаты по x>, Y: <координаты по y>, Z: <координаты по z>"
+attack(self), который выводит "Sorry, i'm peaceful :)", если степень опасности меньше 5 и "Be careful, i'm attacking you 0_0" , если равно или больше.
+speak(self), который выводит строку со звуком sound.
+"""
+
 
 
     def move(self, dx, dy, dz):         # изменение координат
@@ -28,18 +49,18 @@ class Animal:               # Класс животных
         # attack(self), который выводит "Sorry, i'm peaceful :)", если степень опасности меньше 5
         # и "Be careful, i'm attacking you 0_0" , если равно или больше.
         # speak(self), который выводит строку со звуком sound.
-
+        pass
 
 
 class Bird(Animal):                 # Класс птиц. Наследуется от Animal
-    def __init__(self, beak):
-        super()__init__(beak)
+    def __init__(self, beak, sound, ):
+        super().__init__(beak)
         super().beak = True         # наличие клюва
 
 
     def lay_eggs(self):
         # Выводит строку"Here are(is) <случайное число от 1 до 4> eggs for you"
-        pass
+        re
 
 
 class AquaticAnimal:        # Класс плавающего животного. Наследуется от Animal
@@ -62,8 +83,11 @@ class PoisonousAnimal:           # Класс ядовитых животных.
 
 
 class Duckbill(Bird, AquaticAnimal, PoisonousAnimal):                 # класс утконоса.
+    def __init__(self):
+    sound = "Click-click-click"
 
     """
+    
     Порядок наследования определите сами, опираясь на ниже приведённые примеры выполнения кода.
 
     Объект этого класса должен обладать одним дополнительным атрибутом:
@@ -93,28 +117,4 @@ X: 10 Y: 20 Z: 30
 X: 10 Y: 20 Z: 0
 Here are(is) 3 eggs for you # Число может быть другим (1-4)
 """
-=======
-class Animal:
 
-    pass
-
-
-class Bird:
-
-    pass
-
-
-class AquaticAnimal:
-
-    pass
-
-
-class PoisonousAnimal:
-
-    pass
-
-
-class Duckbill:
-
-    pass
->>>>>>> origin/master
