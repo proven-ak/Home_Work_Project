@@ -52,6 +52,17 @@ class Animal:               # Класс животных
         # "X: <координаты по x>, Y: <координаты по y>, Z: <координаты по z>"
         return f"X: {self._cords[0]}, Y: {self._cords[1]}, Z: {self._cords[2]}"
 
+    def attack(self):
+        # метод выводит "Sorry, i'm peaceful :)", если степень опасности меньше 5
+        if self._DEGREE_OF_DANGER < 5:
+            return f"Sorry, i'm peaceful :)"
+        # метод выводит "Be careful, i'm attacking you 0_0" , если равно или больше.
+        else:
+            return f"Be careful, i'm attacking you 0_0"
+
+        # speak(self), который выводит строку со звуком sound.
+
+
 
 class Bird(Animal):                 # Класс птиц. Наследуется от Animal
     def __init__(self, beak, sound, ):
