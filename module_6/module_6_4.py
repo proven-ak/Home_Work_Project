@@ -66,6 +66,11 @@ class Circle(Figure):                           # Класс круг
 
     def __init__(self, sides, color):
         super().__init__(1, color)        # Количество сторон круга 1
+        self.__radius = sides / (2 * math.pi)  # Радиус окружности
+
+    def get_square(self):
+        # Возвращает площадь круга, рассчитываемую как π * r^2
+        return math.pi * self.__radius ** 2
 
 
 class Triangle(Figure):                         # Класс треугольник
