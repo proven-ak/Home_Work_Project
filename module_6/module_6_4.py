@@ -64,7 +64,7 @@ class Circle(Figure):                           # Класс круг
     # Атрибут __radius, рассчитать исходя из длины окружности(одной единственной стороны).
     # Метод get_square возвращает площадь круга(можно рассчитать как через длину, так и через радиус).
 
-    def __init__(self, sides, color):
+    def __init__(self, color, sides):
         super().__init__(1, color)        # Количество сторон круга 1
         self.__radius = sides / (2 * math.pi)  # Радиус окружности
 
@@ -146,7 +146,7 @@ print("---------")
 
 # Test Class Circle
 # Создаём круг с длиной окружности 31.4 и цветом (0, 255, 0)
-circle = Circle(31.4, (0, 255, 0))
+circle = Circle((0, 255, 0), 31.4)
 
 # Получаем цвет треугольника
 print("Цвет круга:", triangle.get_color())  # Ожидаемый вывод: (255, 0, 0)
@@ -177,21 +177,21 @@ print("----------------------")
 
 # Test Code:
 # Код для проверки:
-circle1 = Circle((200, 200, 100), 10) # (Цвет, стороны)
+circle1 = Circle((200, 200, 100), 10)        # (Цвет, стороны)
 cube1 = Cube((222, 35, 130), 6)
 
 # Проверка на изменение цветов:
-circle1.set_color(55, 66, 77) # Изменится
+circle1.set_color(55, 66, 77)                   # Изменится
 print(circle1.get_color())
 
-cube1.set_color(300, 70, 15) # Не изменится
+cube1.set_color(300, 70, 15)                    # Не изменится
 print(cube1.get_color())
 
 # Проверка на изменение сторон:
-cube1.set_sides(5, 3, 12, 4, 5) # Не изменится
+cube1.set_sides(5, 3, 12, 4, 5)                # Не изменится
 print(cube1.get_sides())
 
-circle1.set_sides(15) # Изменится
+circle1.set_sides(15)                                   # Изменится
 print(circle1.get_sides())
 
 # Проверка периметра (круга), это и есть длина:
