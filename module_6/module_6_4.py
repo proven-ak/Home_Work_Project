@@ -22,22 +22,34 @@ class Figure:           # Класс фигура
         return all(isinstance(value, int) and 0 <= value <= 255 for value in (r, g, b))
 
     def set_color(self, r, g, b):
-        # Метод принимает параметры r, g, b - числа и изменяет атрибут __color на соответствующие
-        # значения, предварительно проверив их на корректность.
+        # Метод принимает параметры r, g, b - числа и изменяет атрибут __color
+        # на соответствующие значения, предварительно проверив их на корректность,
+        # что все параметры целые числа и находятся в диапазоне от 0 до 255
         # Если введены некорректные данные, то цвет остаётся прежним.
-        if self.__is_valid_color(r, g, b):
+
+        if all(isinstance(value, int) for value in (r, g, b)) and self.__is_valid_color(r, g, b):
             self.__color = (r, g, b)
+        else:
+            return
 
-    def __is_valid_sides(self):
-        # метод служебный, принимает неограниченное кол-во сторон, возвращает
-        # True если все стороны целые положительные числа и кол-во новых сторон совпадает с текущим,
-        # False - во всех остальных случаях.
+    def __is_valid_sides(self, *new_sides):
+        # Метод __is_valid_sides - служебный, принимает неограниченное кол-во сторон,
+        # возвращает True если все стороны целые положительные числа и кол - во
+        # новых сторон совпадает с текущим, False - во всех остальных случаях.
 
-        if self.__sides >= 0:
-            return True
+        if isinstance(self.__sides, (list, tuple)):
+            # Проверка списка/кортежа: совпадение длины и все стороны > 0
+            return len(new_sides) == len(self.__sides) and all(isinstance(s, (int, float)) and s > 0 for s in new_sides)
+
+        elif isinstance(self.__sides, (int, float)):
+            # Проверка одиночного значения
+            return len(new_sides) == 1 and isinstance(new_sides[0], (int, float)) and new_sides[0] > 0
+
+        return False  # Если тип данных неизвестен
 
     def get_sides(self):
-        # Если стороны хранятся как список/кортеж
+        # Метод get_sides должен возвращать значения атрибута __sides
+
         if isinstance(self.__sides, (list, tuple)):
             return list(self.__sides)
         # Если сторона одна (например, для круга), возвращаем её в виде списка
@@ -53,44 +65,32 @@ class Figure:           # Класс фигура
     def set_sides(self, *new_sides):
         # метод принимает новые стороны, если их количество не равно sides_count,
         # то не изменять, в противном случае - менять.
-        """
-           if len(new_sides) == 1:  # Если передана только одна сторона
-            self.__sides = [new_sides[0]] * 1
-        elif len(new_sides) == 12 and all(side == new_sides[0] for side in new_sides):  # Если переданы 12 одинаковых сторон
-            self.__sides = list(new_sides)
-        else:
-            print("Некорректные стороны. Куб должен иметь 12 одинаковых сторон.")
 
-        """
-        if isinstance(self.__sides, (list, tuple)):  # Если стороны хранятся как список/кортеж
-            if len(new_sides) == len(self.__sides) and all(s > 0 for s in new_sides):
+        if self.__is_valid_sides(*new_sides):
+            if isinstance(self.__sides, (list, tuple)):  # Если стороны хранятся как список/кортеж
                 self.__sides = list(new_sides)
-            else:
-                print("Некорректные стороны.")
-        elif isinstance(self.__sides, (int, float)):  # Если сторона одна (число)
-            if len(new_sides) == 1 and new_sides[0] > 0:
+            elif isinstance(self.__sides, (int, float)):  # Если сторона одна (число)
                 self.__sides = new_sides[0]
-            else:
-                print("Некорректная длина стороны.")
+        else:
+            print("Некорректные стороны. Значения не изменены.")
 
 
 class Circle(Figure):                           # Класс круг
     # Атрибуты класса Circle(sides_count = 1):
-    # Каждый объект класса Circle должен обладать следующими атрибутами и методами:
-    # Все атрибуты и методы класса Figure
-    # Атрибут __radius, рассчитать исходя из длины окружности(одной единственной стороны).
-    # Метод get_square возвращает площадь круга(можно рассчитать как через длину, так и через радиус).
+    # Каждый объект класса Circle должен обладать всеми атрибутами и методами класса Figure
 
     def __init__(self, color, sides):
-        super().__init__(color, sides=1)       # Количество сторон круга 1
-        self.__radius = sides / (2 * math.pi)  # Радиус окружности
+        super().__init__(color, sides=1)        # длина окружности
+        self.__radius = sides / (2 * math.pi)   # Радиус окружности
+        sides_count = 1                         # Количество сторон круга 1
 
     def get_square(self):
         # Возвращает площадь круга, рассчитываемую как π * r^2
         return math.pi * self.__radius ** 2
 
     def get_radius(self):
-        # Возвращает радиус круга
+        # Возвращает радиус круга рассчитать исходя из длины окружности
+        # (одной единственной стороны).
         return self.__radius
 
 
@@ -128,15 +128,16 @@ class Cube(Figure):                             # Класс куб
     # Метод get_volume, возвращает объём куба.
 
     def __init__(self, color, sides):
-        super().__init__(color, 12)       # Количество сторон куба 12
-        self.__sides = [sides] * 12  # Список из 12 одинаковых сторон
+        super().__init__(color, 12)                # Количество сторон куба 12
+        sides_count = 12
+        self.__sides = [sides] * sides_count             # Список из 12 одинаковых сторон
 
     def get_volume(self):
         """
         Вычисляет и возвращает объём куба.
         :return: Объём куба.
         """
-        side_length = self.__sides[0]  # Все стороны одинаковой длины
+        side_length = self.__sides[0]           # Все стороны одинаковой длины
         return side_length ** 3
 
     def get_sides(self):
@@ -167,8 +168,8 @@ print("---------")
 # Создаём круг с длиной окружности 31.4 и цветом (0, 255, 0)
 circle = Circle((0, 255, 0), 31.4)
 
-# Получаем цвет треугольника
-print("Цвет круга:", triangle.get_color())  # Ожидаемый вывод: (255, 0, 0)
+# Получаем цвет круга
+print("Цвет круга:", circle.get_color())  # Ожидаемый вывод: (255, 0, 0)
 
 # Получаем радиус круга
 print("Радиус круга:", round(circle.get_radius(), 2))  # Ожидаемый вывод: 5.0
@@ -183,7 +184,7 @@ print("---------")
 # Создаём куб с длиной стороны 4 и цветом (0, 255, 0)
 cube = Cube( (0, 255, 0), 4)
 
-# Получаем цвет треугольника
+# Получаем цвет куба
 print("Цвет куба:", cube.get_color())  # Ожидаемый вывод: (0, 255, 0)
 
 # Получаем список сторон
