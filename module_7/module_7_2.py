@@ -5,23 +5,22 @@ def custom_write(file_name, strings):
     strings_positions = {}
 
     # Открываем файл для записи
-    file = open(file_name, 'w', encoding='utf-8')
+    with open(file_name, 'w', encoding='utf-8') as file:
 
-    # Проходим по каждой строке в списке
-    for line_number, string in enumerate(strings):
-        # enumerate используется для создания итератора, который возвращает кортежи,
-        # содержащие индекс и значение каждого элемента из списка strings
+        # Проходим по каждой строке в списке
+        for line_number, string in enumerate(strings):
+            # enumerate используется для создания итератора, который возвращает кортежи,
+            # содержащие индекс и значение каждого элемента из списка strings
 
-        # Получаем текущую позицию в байтах перед записью строки
-        byte_position = file.tell()
+            # Получаем текущую позицию в байтах перед записью строки
+            byte_position = file.tell()
 
-        # Записываем строку с символом новой строки
-        file.write(string + '\n')
+            # Записываем строку с символом новой строки
+            file.write(string + '\n')
 
-        # Добавляем в словарь позицию строки
-        strings_positions[(line_number, byte_position)] = string
+            # Добавляем в словарь позицию строки
+            strings_positions[(line_number, byte_position)] = string
 
-    file.close()
     return strings_positions
 
 
