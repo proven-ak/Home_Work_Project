@@ -26,10 +26,12 @@ class WordsFinder:
 
         # Перебираем названия файлов и открываем каждый из них, используя оператор with.
         for file_name in self.file_names:
-            with open(file_name, 'w', encoding='utf-8') as file:
+            with open(file_name, 'r', encoding='utf-8') as file:
                 print(file_name)
+                # Для каждого файла считываем единые строки, переводя их в нижний регистр
+                content = file.read().lower()
+                print(content)
 
-        # Для каждого файла считывайте единые строки, переводя их в нижний регистр (метод lower()).
 
 
 
