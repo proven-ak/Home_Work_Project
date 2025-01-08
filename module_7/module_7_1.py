@@ -58,7 +58,18 @@ class Shop:
         # Если такой продукт уже есть, то не добавляет и выводит строку
         # 'Продукт <название> уже есть в магазине'.
 
-        pass
+        # Получаем список текущих продуктов из файла
+        current_data = self.get_products()                                          # текущие данные
+        existing_products = current_data.split("\n") if current_data else []        # существующие продукты
+        existing_names = [line.split(", ")[0] for line in existing_products]        # существующие имена
+
+        with open(self.__file_name, "a", encoding="utf-8") as file:
+            for product in products:
+                if product.name in existing_names:
+                    print(f"Продукт {product.name} уже есть в магазине")
+                else:
+                    file.write(str(product) + "\n")
+                    print(f"Продукт {product.name} добавлен в магазин")
 
 
 # Пример работы программы:
