@@ -25,9 +25,12 @@ def custom_write(file_name, strings):
         # enumerate используется для создания итератора, который возвращает кортежи,
         # содержащие индекс и значение каждого элемента из списка strings
 
-        print(line_number, string)
-        file.write(string + '\n')
+        # Получаем текущую позицию в байтах перед записью строки
+        byte_position = file.tell()
+        print(line_number, byte_position, string)
 
+        # Записываем строку с символом новой строки
+        file.write(string + '\n')
 
     file.close()
     return
