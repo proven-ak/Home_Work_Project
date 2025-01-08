@@ -20,9 +20,15 @@
 
 def custom_write(file_name, strings):
     file = open(file_name, 'w', encoding='utf-8')
-    for num, str_ in enumerate(strings):
-        print(num, str_)
-        file.write(str_)
+
+    for line_number, string in enumerate(strings):
+        # enumerate используется для создания итератора, который возвращает кортежи,
+        # содержащие индекс и значение каждого элемента из списка strings
+
+        print(line_number, string)
+        file.write(string + '\n')
+
+
     file.close()
     return
 
