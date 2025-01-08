@@ -43,7 +43,13 @@ class Shop:
     def get_products(self):
         # метод считывает всю информацию из файла __file_name, закрывает его
         # и возвращает единую строку со всеми товарами из файла __file_name.
-        __file_name = 'products.txt'
+        try:
+            with open(self.__file_name, "r", encoding="utf-8") as file:
+                # Считываем всё содержимое файла и удаляем лишние пробелы
+                return file.read().strip()
+        except FileNotFoundError:
+            # Если файл не существует, возвращаем пустую строку
+            return ""
 
     def add(self, *products):
         # Метод, который принимает неограниченное количество объектов
