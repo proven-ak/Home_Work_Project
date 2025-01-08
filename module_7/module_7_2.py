@@ -20,14 +20,21 @@
 
 def custom_write(file_name, strings):
     file = open(file_name, 'w', encoding='utf-8')
-    file.write(strings)
+    for num, str_ in enumerate(strings):
+        print(num, str_)
+        file.write(str_)
     file.close()
     return
 
 
-info = 'Text for tell.'
-result = custom_write('test.txt', info)
-print(result)
+info = [
+     'Text for tell.',
+     'Используйте кодировку utf-8.',
+     'Because there are 2 languages!',
+     'Спасибо!'
+     ]
+
+custom_write('test.txt', info)
 
 # # Пример выполняемого кода:
 # info = [
