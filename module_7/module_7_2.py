@@ -18,19 +18,30 @@
 #
 # 'Text for tell.', 'Используйте кодировку utf-8.' - сами строки.
 
-# Пример выполняемого кода:
-info = [
-    'Text for tell.',
-    'Используйте кодировку utf-8.',
-    'Because there are 2 languages!',
-    'Спасибо!'
-    ]
+def custom_write(file_name, strings):
+    file = open(file_name, 'w', encoding='utf-8')
+    file.write(strings)
+    file.close()
+    return
 
+
+info = 'Text for tell.'
 result = custom_write('test.txt', info)
+print(result)
 
-for elem in result.items():
+# # Пример выполняемого кода:
+# info = [
+#     'Text for tell.',
+#     'Используйте кодировку utf-8.',
+#     'Because there are 2 languages!',
+#     'Спасибо!'
+#     ]
 
-  print(elem)
+
+# result = custom_write('test.txt', info)
+#
+# for elem in result.items():
+#     print(elem)
 
 
 """
