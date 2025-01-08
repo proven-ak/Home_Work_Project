@@ -27,12 +27,16 @@ class WordsFinder:
         # Перебираем названия файлов и открываем каждый из них, используя оператор with.
         for file_name in self.file_names:
             with open(file_name, 'r', encoding='utf-8') as file:
-                print(file_name)
+                print("+",file_name)
+
                 # Для каждого файла считываем единые строки, переводя их в нижний регистр
                 content = file.read().lower()
-                print(content)
+                print("*", content)
 
-
+                # Избавляемся от пунктуации [',', '.', '=', '!', '?',';',':',' - '] в строке.
+                for symbol in [',', '.', '=', '!', '?', ';', ':', ' - ']:
+                    content = content.replace(symbol, ' ')
+                    print("$", content)
 
 
 # Также объект класса WordsFinder должен обладать следующими методами:
