@@ -66,10 +66,17 @@ class WordsFinder:
                 word_positions[file_name] = None
         return word_positions
 
-    def count(self):
+    def count(self, word):
         # count(self, word) - метод, где word - искомое слово. Возвращает словарь,
         # где ключ - название файла, значение - количество слова word в списке слов этого файла.
-        pass
+
+        word = word.lower()
+        word_counts = {}
+        all_words = self.get_all_words()
+
+        for file_name, words in all_words.items():
+            word_counts[file_name] = words.count(word)
+        return word_counts
 
 # Также объект класса WordsFinder должен обладать следующими методами:
 
@@ -84,8 +91,8 @@ class WordsFinder:
 # В словарь all_words запишите полученные данные, ключ - название файла,
 # значение - список из слов этого файла.
 
-"""
 
+"""
 В методах find и count пользуйтесь ранее написанным методом get_all_words 
 для получения названия файла и списка его слов.
 Для удобного перебора одновременно ключа(названия) и значения(списка слов) 
@@ -100,7 +107,7 @@ class WordsFinder:
 finder2 = WordsFinder('test_file.txt')
 print(finder2.get_all_words())                  # Все слова
 print(finder2.find('TEXT'))                     # 3 слово по счёту
-# print(finder2.count('teXT'))                    # 4 слова teXT в тексте всего
+print(finder2.count('teXT'))                    # 4 слова teXT в тексте всего
 
 """
 Вывод на консоль:
