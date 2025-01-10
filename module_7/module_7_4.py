@@ -43,6 +43,9 @@ scores_string = f"Команды решили {score_1} и {score_2} задач.
 # 6. Исход соревнования (challenge_result).
 challenge_result_string = f"Результат битвы: {challenge_result}"
 
+# 7. Общее количество задач (tasks_total) и среднее время решения (time_avg).
+tasks_string = f"Сегодня было решено {tasks_total} задач, в среднем по {time_avg:.1f} секунды на задачу!"
+
 # Комментарии к заданию:
 # В русском языке окончания слов меняются (1 участник, 2 участника),
 # пока что давайте не обращать на это внимания.
@@ -63,4 +66,5 @@ print(score_2_string)
 print(team2_time_string)
 print(scores_string)
 print(challenge_result_string)
+print(tasks_string)
 
