@@ -42,7 +42,8 @@ import os
 
 
 # Используем os.walk для обхода каталога, путь к которому указывает переменная directory
-directory = os.walk(r'C:\Users\User\PycharmProjects\Home_Work_Project\module_7')
+directory_path = r'C:\Users\User\PycharmProjects\Home_Work_Project\module_7'
+directory = os.walk(directory_path)
 print(directory)
 
 # Применяем os.path.join для формирования полного пути к файлам.
