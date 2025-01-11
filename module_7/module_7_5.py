@@ -16,19 +16,19 @@
 #                       если это файл, и False в остальных случаях (например, если это папка).
 
 import os
-print('текущая дирeктория: ', os.getcwd())
-if os.path.exists('second'):
-  os.chdir('second')
-else:
-  os.mkdir('second')
-  os.chdir('second')
-print('текущая дирeктория: ', os.getcwd())
-os.chdir(r'C:\Users\User\PycharmProjects\Home_Work_Project\module_7')
-print('текущая дирeктория: ', os.getcwd())
-file = [f for f in os.listdir() if os.path.isfile(f)]
-dirs = [d for d in os.listdir() if os.path.isfile(d)]
-print('dirs = ', dirs)
-print('file = ', file)
+# print('текущая дирeктория: ', os.getcwd())
+# if os.path.exists('second'):
+#   os.chdir('second')
+# else:
+#   os.mkdir('second')
+#   os.chdir('second')
+# print('текущая дирeктория: ', os.getcwd())
+# os.chdir(r'C:\Users\User\PycharmProjects\Home_Work_Project\module_7')
+# print('текущая дирeктория: ', os.getcwd())
+# file = [f for f in os.listdir() if os.path.isfile(f)]
+# dirs = [d for d in os.listdir() if os.path.isfile(d)]
+# print('dirs = ', dirs)
+# print('file = ', file)
 
 
 # os.walk             - Рекурсивно обходит дерево каталогов, начиная с указанной директории.
@@ -42,7 +42,8 @@ print('file = ', file)
 
 
 # Используем os.walk для обхода каталога, путь к которому указывает переменная directory
-
+directory = os.walk(r'C:\Users\User\PycharmProjects\Home_Work_Project\module_7')
+print(directory)
 
 # Применяем os.path.join для формирования полного пути к файлам.
 
