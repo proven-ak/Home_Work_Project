@@ -6,7 +6,7 @@
 # и использование модуля time для корректного отображения времени.
 
 # Код из вебинара
-# os.getcwd())        - Возвращает текущую рабочую директорию.
+# os.getcwd()         - Возвращает текущую рабочую директорию.
 # os.path.exists('')  - Проверяет, существует ли файл или папка по указанному пути. True, если существует, или False.
 # os.chdir('')        - Изменяет текущую рабочую директорию на указанную. Путь должен указывать
 #                       на существующую директорию, иначе возникнет ошибка.
@@ -40,11 +40,13 @@ import os
 # os.path.dirname     - Возвращает путь к директории, содержащей указанный файл или путь.
 # os.path.getsize     - Возвращает размер файла (в байтах).
 
+# Находим текущую рабочую директорию
+directory_path = os.getcwd()
+print('directory_path = ', directory_path)
 
 # Используем os.walk для обхода каталога, путь к которому указывает переменная directory
-directory_path = r'C:\Users\User\PycharmProjects\Home_Work_Project\module_7'
 directory = os.walk(directory_path)
-print(directory)
+print('directory = ', directory)
 
 # Применяем os.path.join для формирования полного пути к файлам.
 
