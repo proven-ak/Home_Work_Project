@@ -49,7 +49,9 @@ directory = os.walk(directory_path)
 print('directory = ', directory)
 
 # Применяем os.path.join для формирования полного пути к файлам.
-
+path = os.path.join('C:\\Users', 'User', 'Documents', 'file.txt')
+print(path)
+# 'C:\Users\User\Documents\file.txt'
 
 # Используем os.path.getmtime и модуль time для получения и отображения времени последнего изменения файла.
 
