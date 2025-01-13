@@ -96,9 +96,10 @@ print(h1 < h2)      # __lt__
 print(h1 <= h2)     # __le__
 print(h1 != h2)     # __ne__
 
+# Проверка типа параметров
 h1.number_of_floors = "12"
 print(h1 > h2)
 
-h2.number_of_floors = "sss"
-print(h1 <= h2)
+# h2.number_of_floors = "sss"
+# print(h1 <= h2)
 
