@@ -15,7 +15,6 @@
 # os.path.isfile(f)   - Проверяет, является ли указанный путь файлом. Возвращает True,
 #                       если это файл, и False в остальных случаях (например, если это папка).
 
-import os
 # print('текущая дирeктория: ', os.getcwd())
 # if os.path.exists('second'):
 #   os.chdir('second')
@@ -30,7 +29,6 @@ import os
 # print('dirs = ', dirs)
 # print('file = ', file)
 
-
 # os.walk             - Рекурсивно обходит дерево каталогов, начиная с указанной директории.
 #                       Возвращает кортеж из трёх элементов для каждой директории
 # os.path.join        - Объединяет несколько частей пути в один корректный путь.
@@ -40,21 +38,30 @@ import os
 # os.path.dirname     - Возвращает путь к директории, содержащей указанный файл или путь.
 # os.path.getsize     - Возвращает размер файла (в байтах).
 
+import os
+import time
 # Находим текущую рабочую директорию
 directory_path = os.getcwd()
 print('directory_path = ', directory_path)
 
-# Используем os.walk для обхода каталога, путь к которому указывает переменная directory
+# 1. Используем os.walk для обхода каталога, путь к которому указывает переменная directory
 directory = os.walk(directory_path)
 print('directory = ', directory)
 
 # Применяем os.path.join для формирования полного пути к файлам.
 path = os.path.join('C:\\Users', 'User', 'Documents', 'file.txt')
 print(path)
-# 'C:\Users\User\Documents\file.txt'
 
 # Используем os.path.getmtime и модуль time для получения и отображения времени последнего изменения файла.
-
+# Проверяем, существует ли файл
+if not os.path.exists(path):
+    # Создаем файл, если он отсутствует
+    with open(path, 'w') as file:
+        file.write('')  # Пустой файл
+# Получаем время последнего изменения файла
+filetime = os.path.getmtime(path)
+formatted_time = time.strftime("%d.%m.%Y %H:%M", time.localtime(filetime))
+print('Время последнего изменения файла:', formatted_time)
 
 # Используем os.path.getsize для получения размера файла.
 
