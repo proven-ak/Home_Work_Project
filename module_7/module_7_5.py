@@ -40,6 +40,7 @@
 
 import os
 import time
+
 # Находим текущую рабочую директорию
 directory_path = os.getcwd()
 print('directory_path = ', directory_path)
@@ -48,28 +49,28 @@ print('directory_path = ', directory_path)
 directory = os.walk(directory_path)
 print('directory = ', directory)
 
-# Применяем os.path.join для формирования полного пути к файлам.
-path = os.path.join('C:\\Users', 'User', 'Documents', 'file.txt')
-print(path)
+# 2. Применяем os.path.join для формирования полного пути к файлам.
+filepath = os.path.join('C:\\Users', 'User', 'Documents', 'file.txt')
+print(filepath)
 
-# Используем os.path.getmtime и модуль time для получения и отображения времени последнего изменения файла.
+# 3. Используем os.path.getmtime и модуль time для получения и отображения времени последнего изменения файла.
 # Проверяем, существует ли файл
-if not os.path.exists(path):
+if not os.path.exists(filepath):
     # Создаем файл, если он отсутствует
-    with open(path, 'w') as file:
+    with open(filepath, 'w') as file:
         file.write('')  # Пустой файл
 # Получаем время последнего изменения файла
-filetime = os.path.getmtime(path)
+filetime = os.path.getmtime(filepath)
 formatted_time = time.strftime("%d.%m.%Y %H:%M", time.localtime(filetime))
 print('Время последнего изменения файла:', formatted_time)
 
-# Используем os.path.getsize для получения размера файла.
-file_size = os.path.getsize(path)
+# 4. Используем os.path.getsize для получения размера файла.
+file_size = os.path.getsize(filepath)
 print('Размер файла:', file_size)
 
-# Используем os.path.dirname для получения родительской директории файла.
-
-
+# 5. Используем os.path.dirname для получения родительской директории файла.
+parent_dir = os.path.dirname(filepath)
+print(parent_dir)
 
 # Комментарии к заданию:
 # Ключевая идея – использование вложенного for
