@@ -11,6 +11,7 @@ class House:
     перед выполняемыми действиями лучше убедиться в принадлежности к типу при помощи функции isinstance:
     isinstance(other, int) - other указывает на объект типа int.
     isinstance(other, House) - other указывает на объект типа House.
+    
     """
 
     # Метод для перехода на указанный этаж
@@ -30,7 +31,7 @@ class House:
     @staticmethod
     def _validate_number(value):
         if not isinstance(value, (int, House)):
-            raise TypeError("Ожидается число (int)")
+            raise TypeError("Ожидается число (int) или объект класса House")
 
     def __eq__(self, other):
         self._validate_number(other)
