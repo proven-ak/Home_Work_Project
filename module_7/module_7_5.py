@@ -64,7 +64,8 @@ formatted_time = time.strftime("%d.%m.%Y %H:%M", time.localtime(filetime))
 print('Время последнего изменения файла:', formatted_time)
 
 # Используем os.path.getsize для получения размера файла.
-
+file_size = os.path.getsize(path)
+print('Размер файла:', file_size)
 
 # Используем os.path.dirname для получения родительской директории файла.
 
