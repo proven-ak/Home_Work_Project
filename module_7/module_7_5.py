@@ -72,6 +72,8 @@ print('Размер файла:', file_size)
 parent_dir = os.path.dirname(filepath)
 print(parent_dir)
 
+print(f'Обнаружен файл: {file}, Путь: {filepath}, Размер: {filesize} байт, Время изменения: {formatted_time}, Родительская директория: {parent_dir}')
+
 # Комментарии к заданию:
 # Ключевая идея – использование вложенного for
 """
