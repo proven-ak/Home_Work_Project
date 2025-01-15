@@ -57,13 +57,26 @@
 # Импорт библиотеки для создания графического интерфейса
 import tkinter
 
+# Импорт функции filedialog из tkinter для работы с диалоговыми окнами выбора файлов
+from tkinter import filedialog
+
+
+# Определение функции для выбора файла через диалоговое окно
+def file_select():
+    filename = filedialog.askopenfilename(initialdir="/",                   #
+                                          title="Выберите файл",            #
+                                          filetypes=(                       #
+                                              ('Текстовый файл', '.txt'),
+                                              ('Все файлы', '*')))
+
+
 # Создание главного окна приложения
 window = tkinter.Tk()
 
 # Настройка параметров главного окна
 window.title('Проводник')                           # Имя окна
 window.geometry('350x150')                          # Размеры окна
-window.configure(bg='lightgray')                        # Цвет фона
+window.configure(bg='lightgray')                    # Цвет фона
 window.resizable(False, False)         # Запрет изменения размера окна
 
 # Создание текстовой метки
@@ -71,7 +84,7 @@ text = tkinter.Label(window,                    #
                      text='Файл: ',             # Текст на метке
                      height=1, width=50,        # Размеры метки
                      background='silver',       # Цвет фона метки
-                     foreground='black')         # Цвет текста
+                     foreground='black')        # Цвет текста
 
 # Размещение метки в сетке окна
 text.grid(column=1, row=2)
@@ -81,7 +94,8 @@ button_select = tkinter.Button(window,
                                width=15, height=1,          # Размеры кнопки
                                text='Выбрать файл',         # Текст на кнопке
                                background='silver',         # Цвет фона кнопки
-                               foreground='black')           # Цвет текста кнопки
+                               foreground='black',          # Цвет текста кнопки
+                               command=file_select)         # При нажатии на кнопку будет вызываться функция file_select
 
 # Размещение кнопки в окне
 button_select.grid(column=1,                # Устанавливаем расположение кнопки в 1-й колонке
