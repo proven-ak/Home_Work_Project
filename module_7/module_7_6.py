@@ -84,7 +84,9 @@ button_select = tkinter.Button(window,
                                foreground='blue')           # Цвет текста кнопки
 
 # Размещение кнопки в окне
-button_select.grid(column=1, row=2, pady=5)
+button_select.grid(column=1,                # Устанавливаем расположение кнопки в 1-й колонке
+                   row=2,                   # Устанавливаем расположение кнопки в 2-й строке
+                   pady=5)                  # Добавляем отступ по вертикали (в пикселях)
 
 # Запуск главного цикла приложения
 window.mainloop()
