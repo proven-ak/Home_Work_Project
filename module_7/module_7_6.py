@@ -63,29 +63,29 @@ window = tkinter.Tk()
 # Настройка параметров главного окна
 window.title('Проводник')                           # Имя окна
 window.geometry('350x150')                          # Размеры окна
-window.configure(bg='black')                        # Цвет фона
+window.configure(bg='lightgray')                        # Цвет фона
 window.resizable(False, False)         # Запрет изменения размера окна
 
 # Создание текстовой метки
 text = tkinter.Label(window,                    #
                      text='Файл: ',             # Текст на метке
-                     height=5, width=50,        # Размеры метки
+                     height=1, width=50,        # Размеры метки
                      background='silver',       # Цвет фона метки
-                     foreground='blue')         # Цвет текста
+                     foreground='black')         # Цвет текста
 
 # Размещение метки в сетке окна
-text.grid(column=1, row=1)
+text.grid(column=1, row=2)
 
 # Создание кнопки для выбора файла
 button_select = tkinter.Button(window,
-                               width=20, height=3,          # Размеры кнопки
+                               width=15, height=1,          # Размеры кнопки
                                text='Выбрать файл',         # Текст на кнопке
                                background='silver',         # Цвет фона кнопки
-                               foreground='blue')           # Цвет текста кнопки
+                               foreground='black')           # Цвет текста кнопки
 
 # Размещение кнопки в окне
 button_select.grid(column=1,                # Устанавливаем расположение кнопки в 1-й колонке
-                   row=2,                   # Устанавливаем расположение кнопки в 2-й строке
+                   row=3,                   # Устанавливаем расположение кнопки в 2-й строке
                    pady=5)                  # Добавляем отступ по вертикали (в пикселях)
 
 # Запуск главного цикла приложения
