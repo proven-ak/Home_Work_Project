@@ -53,6 +53,8 @@
 Программа, в итоге, будет включать удобное меню, что сделает её более функциональной
 и профессиональной.
 """
+#
+import os
 
 # Импорт библиотеки для создания графического интерфейса
 import tkinter
@@ -63,12 +65,17 @@ from tkinter import filedialog
 
 # Определение функции для выбора файла через диалоговое окно
 def file_select():
-    filename = filedialog.askopenfilename(initialdir="/",                   #
-                                          title="Выберите файл",            #
-                                          filetypes=(                       #
-                                              ('Текстовый файл', '.txt'),
-                                              ('Все файлы', '*')))
+    filename = filedialog.askopenfilename(
 
+                                          initialdir="/",                   # Устанавливаем начальную директорию,
+                                                                            # с которой начинается выбор файла
+                                                                            # ("/" — корень файловой системы)
+                                          title="Выберите файл",            # Заголовок диалогового окна
+                                          filetypes=(                       # Список доступных типов файлов для выбора
+                                              ('Текстовый файл', '.txt'),   # Тип: текстовые файлы с расширением .txt
+                                              ('Все файлы', '*')))          # Тип: все файлы (с любым расширением)
+    text['text'] = text['text'] + ' ' + filename
+    os.startfile(filename)
 
 # Создание главного окна приложения
 window = tkinter.Tk()
@@ -80,11 +87,13 @@ window.configure(bg='lightgray')                    # Цвет фона
 window.resizable(False, False)         # Запрет изменения размера окна
 
 # Создание текстовой метки
-text = tkinter.Label(window,                    #
+text = tkinter.Label(window,
                      text='Файл: ',             # Текст на метке
                      height=1, width=50,        # Размеры метки
                      background='silver',       # Цвет фона метки
-                     foreground='black')        # Цвет текста
+                     foreground='black',        # Цвет текста
+                     anchor='w',                # Выравнивание текста по левому краю (west)
+                     wraplength=300)            # Устанавливаем максимальную ширину текста для переноса
 
 # Размещение метки в сетке окна
 text.grid(column=1, row=2)
