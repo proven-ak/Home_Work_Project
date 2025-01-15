@@ -32,7 +32,8 @@ for root, dirs, files in os.walk(directory_path):
             parent_dir = os.path.dirname(filepath)
             file_name = os.path.basename(filepath)
 
-            print(f'Обнаружен файл: {file_name}, Путь: {filepath}, Размер: {file_size} байт, Время изменения: {formatted_time}, \nРодительская директория: {parent_dir}')
+            print(f'Обнаружен файл: {file_name}, Путь: {filepath}, Размер: {file_size} байт, '
+                  f'Время изменения: {formatted_time}, \nРодительская директория: {parent_dir}')
 
 # Пример возможного вывода:
 # Обнаружен файл: main.py, Путь: ./main.py, Размер: 111 байт, Время изменения: 11.11.1111 11:11,
