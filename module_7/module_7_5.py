@@ -5,30 +5,6 @@
 # os.path.dirname, os.path.getsize
 # и использование модуля time для корректного отображения времени.
 
-# Код из вебинара
-# os.getcwd()         - Возвращает текущую рабочую директорию.
-# os.path.exists('')  - Проверяет, существует ли файл или папка по указанному пути. True, если существует, или False.
-# os.chdir('')        - Изменяет текущую рабочую директорию на указанную. Путь должен указывать
-#                       на существующую директорию, иначе возникнет ошибка.
-# os.listdir()        - Возвращает список файлов и папок в указанной директории. Если путь не указан,
-#                       используется текущая рабочая директория.
-# os.path.isfile(f)   - Проверяет, является ли указанный путь файлом. Возвращает True,
-#                       если это файл, и False в остальных случаях (например, если это папка).
-
-# print('текущая дирeктория: ', os.getcwd())
-# if os.path.exists('second'):
-#   os.chdir('second')
-# else:
-#   os.mkdir('second')
-#   os.chdir('second')
-# print('текущая дирeктория: ', os.getcwd())
-# os.chdir(r'C:\Users\User\PycharmProjects\Home_Work_Project\module_7')
-# print('текущая дирeктория: ', os.getcwd())
-# file = [f for f in os.listdir() if os.path.isfile(f)]
-# dirs = [d for d in os.listdir() if os.path.isfile(d)]
-# print('dirs = ', dirs)
-# print('file = ', file)
-
 # os.walk             - Рекурсивно обходит дерево каталогов, начиная с указанной директории.
 #                       Возвращает кортеж из трёх элементов для каждой директории
 # os.path.join        - Объединяет несколько частей пути в один корректный путь.
@@ -43,36 +19,30 @@ import time
 
 # Находим текущую рабочую директорию
 directory_path = os.getcwd()
-print('directory_path = ', directory_path)
 
-# 1. Используем os.walk для обхода каталога, путь к которому указывает переменная directory
-directory = os.walk(directory_path)
-print('directory = ', directory)
+# Обход дерева каталогов
+print("\nИщем файл file.txt:\n")
+for root, dirs, files in os.walk(directory_path):
+    for file in files:
+        if file == "file.txt":  # Проверяем имя файла
 
-# 2. Применяем os.path.join для формирования полного пути к файлам.
-filepath = os.path.join('C:\\Users', 'User', 'Documents', 'file.txt')
-print(filepath)
+            # 2. Применяем os.path.join для формирования полного пути к файлам.
+            filepath = os.path.join(root, file)
 
-# 3. Используем os.path.getmtime и модуль time для получения и отображения времени последнего изменения файла.
-# Проверяем, существует ли файл
-if not os.path.exists(filepath):
-    # Создаем файл, если он отсутствует
-    with open(filepath, 'w') as file:
-        file.write('')  # Пустой файл
-# Получаем время последнего изменения файла
-filetime = os.path.getmtime(filepath)
-formatted_time = time.strftime("%d.%m.%Y %H:%M", time.localtime(filetime))
-print('Время последнего изменения файла:', formatted_time)
+            # 3. Используем os.path.getmtime и модуль time для получения
+            #    и отображения времени последнего изменения файла.
+            filetime = os.path.getmtime(filepath)
+            formatted_time = time.strftime("%d.%m.%Y %H:%M", time.localtime(filetime))
 
-# 4. Используем os.path.getsize для получения размера файла.
-file_size = os.path.getsize(filepath)
-print('Размер файла:', file_size)
+            # 4. Используем os.path.getsize для получения размера файла.
+            file_size = os.path.getsize(filepath)
+            print('Размер файла:', file_size)
 
-# 5. Используем os.path.dirname для получения родительской директории файла.
-parent_dir = os.path.dirname(filepath)
-print(parent_dir)
+            # 5. Используем os.path.dirname для получения родительской директории файла.
+            parent_dir = os.path.dirname(filepath)
+            file_name = os.path.basename(filepath)
 
-print(f'Обнаружен файл: {file}, Путь: {filepath}, Размер: {filesize} байт, Время изменения: {formatted_time}, Родительская директория: {parent_dir}')
+            print(f'Обнаружен файл: {file_name}, Путь: {filepath}, Размер: {file_size} байт, Время изменения: {formatted_time}, Родительская директория: {parent_dir}')
 
 # Комментарии к заданию:
 # Ключевая идея – использование вложенного for
