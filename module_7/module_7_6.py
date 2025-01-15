@@ -54,3 +54,39 @@
 и профессиональной.
 """
 
+# Импорт библиотеки для создания графического интерфейса
+import tkinter
+
+# Создание главного окна приложения
+window = tkinter.Tk()
+
+# Настройка параметров главного окна
+window.title('Проводник')                           # Имя окна
+window.geometry('350x150')                          # Размеры окна
+window.configure(bg='black')                        # Цвет фона
+window.resizable(False, False)         # Запрет изменения размера окна
+
+# Создание текстовой метки
+text = tkinter.Label(window,                    #
+                     text='Файл: ',             # Текст на метке
+                     height=5, width=50,        # Размеры метки
+                     background='silver',       # Цвет фона метки
+                     foreground='blue')         # Цвет текста
+
+# Размещение метки в сетке окна
+text.grid(column=1, row=1)
+
+# Создание кнопки для выбора файла
+button_select = tkinter.Button(window,
+                               width=20, height=3,          # Размеры кнопки
+                               text='Выбрать файл',         # Текст на кнопке
+                               background='silver',         # Цвет фона кнопки
+                               foreground='blue')           # Цвет текста кнопки
+
+# Размещение кнопки в окне
+button_select.grid(column=1, row=2, pady=5)
+
+# Запуск главного цикла приложения
+window.mainloop()
+
+
