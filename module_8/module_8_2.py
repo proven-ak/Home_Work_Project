@@ -12,16 +12,19 @@
 # исключение TypeError, увеличив счётчик incorrect_data на 1.
 # В конечном итоге функция возвращает кортеж из двух значений: result - сумма чисел,
 # incorrect_data - кол-во некорректных данных.
+
 def personal_sum(numbers):
     incorrect_data = 0
     result = 0
     for item in numbers:
         try:
-            result += item
+            if isinstance(item, (int, float)):  # Проверка, что элемент — число
+                result += item
+            else:
+                raise TypeError  # Если не число, возбуждаем исключение
         except TypeError:
             incorrect_data += 1
-            result = 0
-            print('Некорректный тип данных для подсчёта суммы - ', item)
+            print('Некорректный тип данных для подсчёта суммы -', item)
     return result, incorrect_data
 
 # Функция calculate_average(numbers)
@@ -40,14 +43,14 @@ def calculate_average(numbers):
         result = personal_sum(numbers) / len(numbers)
         return result
     except ZeroDivisionError:
-        result = 0
+        result = None
         return result
     except TypeError:
-        result = 0
+        result = None
         return result
 
 
-    # Пункты задачи:
+# Пункты задачи:
 # Создайте функцию personal_sum на основе условий задачи.
 # Создайте функцию calculate_average на основе условий задачи.
 # Вызовите функцию calculate_average несколько раз, передав в неё данные разных вариаций.
