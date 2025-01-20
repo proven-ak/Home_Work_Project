@@ -24,7 +24,7 @@ def personal_sum(numbers):
                 raise TypeError  # Если не число, возбуждаем исключение
         except TypeError:
             incorrect_data += 1
-            print('Некорректный тип данных для подсчёта суммы -', item)
+            print(f'Некорректный тип данных для подсчёта суммы - {item}')
     return result, incorrect_data
 
 # Функция calculate_average(numbers)
@@ -40,18 +40,15 @@ def personal_sum(numbers):
 
 def calculate_average(numbers):
     try:
-        if not isinstance(numbers, (list, tuple)):  # Проверка, что numbers — коллекция
-            raise TypeError  # Если это не коллекция, возбуждаем исключение
-        result, incorrect_data = personal_sum(numbers)  # Получаем сумму и количество ошибок
-        if len(numbers) == 0:
-            return 0  # Если коллекция пуста, возвращаем 0
-        return result / len(numbers)  # Возвращаем среднее арифметическое
+        result = personal_sum(numbers)[0] / len(numbers)
+        return result
     except ZeroDivisionError:
-        return 0  # Если делим на 0, возвращаем 0
+        result = 'ZeroDivisionError'
+        return result
     except TypeError:
-        print('В numbers записан некорректный тип данных')
-        return None  # Если передан некорректный тип данных, возвращаем None
-
+        result = None
+        print("В numbers записан некорректный тип данных")
+    return result
 
 
 # Пункты задачи:
