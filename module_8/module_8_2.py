@@ -40,14 +40,18 @@ def personal_sum(numbers):
 
 def calculate_average(numbers):
     try:
-        result = personal_sum(numbers) / len(numbers)
-        return result
+        if not isinstance(numbers, (list, tuple)):  # Проверка, что numbers — коллекция
+            raise TypeError  # Если это не коллекция, возбуждаем исключение
+        result, incorrect_data = personal_sum(numbers)  # Получаем сумму и количество ошибок
+        if len(numbers) == 0:
+            return 0  # Если коллекция пуста, возвращаем 0
+        return result / len(numbers)  # Возвращаем среднее арифметическое
     except ZeroDivisionError:
-        result = None
-        return result
+        return 0  # Если делим на 0, возвращаем 0
     except TypeError:
-        result = None
-        return result
+        print('В numbers записан некорректный тип данных')
+        return None  # Если передан некорректный тип данных, возвращаем None
+
 
 
 # Пункты задачи:
