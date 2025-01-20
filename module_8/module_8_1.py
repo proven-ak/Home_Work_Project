@@ -16,6 +16,9 @@
 def add_everything_up(a, b):
     try:
         result = a + b
+        # Округляем результат до 6 знаков после запятой, если это число с плавающей точкой
+        if isinstance(result, float):
+            result = round(result, 6)
         return result
     except TypeError:
         return f"{a}{b}"
