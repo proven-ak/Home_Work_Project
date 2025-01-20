@@ -24,7 +24,6 @@ def personal_sum(numbers):
         result = 0
         return result, incorrect_data
 
-
 # Функция calculate_average(numbers)
 # Среднее арифметическое - сумма всех данных делённая на их количество.
 # Должна принимать коллекцию numbers и возвращать: среднее арифметическое всех чисел.
@@ -35,7 +34,21 @@ def personal_sum(numbers):
 # например числа. Обработайте исключение TypeError выводя строку 'В numbers
 # записан некорректный тип данных'. В таком случае функция просто вернёт None.
 
-# Пункты задачи:
+
+def calculate_average(numbers):
+    try:
+        result = personal_sum(numbers) / len(numbers)
+        return result
+    except ZeroDivisionError:
+        result = 0
+        return result
+    except TypeError:
+        print('В numbers записан некорректный тип данных')
+        result = 0
+        return result
+
+
+    # Пункты задачи:
 # Создайте функцию personal_sum на основе условий задачи.
 # Создайте функцию calculate_average на основе условий задачи.
 # Вызовите функцию calculate_average несколько раз, передав в неё данные разных вариаций.
