@@ -12,6 +12,18 @@
 # исключение TypeError, увеличив счётчик incorrect_data на 1.
 # В конечном итоге функция возвращает кортеж из двух значений: result - сумма чисел,
 # incorrect_data - кол-во некорректных данных.
+def personal_sum(numbers):
+    incorrect_data = 0
+    result = 0
+    try:
+        result = sum(numbers)
+        return result, incorrect_data
+
+    except TypeError:
+        incorrect_data += 1
+        result = 0
+        return result, incorrect_data
+
 
 # Функция calculate_average(numbers)
 # Среднее арифметическое - сумма всех данных делённая на их количество.
