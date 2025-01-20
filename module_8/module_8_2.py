@@ -16,7 +16,8 @@ def personal_sum(numbers):
     incorrect_data = 0
     result = 0
     try:
-        result = sum(numbers)
+        for item in numbers:
+            result += item
         return result, incorrect_data
 
     except TypeError:
