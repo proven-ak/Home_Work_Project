@@ -13,6 +13,14 @@
 # строковое представление этих двух данных вместе (в том же порядке). Во всех остальных
 # случаях выполнять стандартные действия.
 
+def add_everything_up(a, b):
+    try:
+        result = a + b
+        return result
+    except TypeError:
+        return f"{a}{b}"
+
+
 # Пример кода:
 print(add_everything_up(123.456, 'строка'))
 print(add_everything_up('яблоко', 4215))
