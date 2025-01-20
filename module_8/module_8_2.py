@@ -15,15 +15,14 @@
 def personal_sum(numbers):
     incorrect_data = 0
     result = 0
-    try:
-        for item in numbers:
+    for item in numbers:
+        try:
             result += item
-        return result, incorrect_data
-
-    except TypeError:
-        incorrect_data += 1
-        result = 0
-        return result, incorrect_data
+        except TypeError:
+            incorrect_data += 1
+            result = 0
+            print('Некорректный тип данных для подсчёта суммы - ', item)
+    return result, incorrect_data
 
 # Функция calculate_average(numbers)
 # Среднее арифметическое - сумма всех данных делённая на их количество.
@@ -44,7 +43,6 @@ def calculate_average(numbers):
         result = 0
         return result
     except TypeError:
-        print('В numbers записан некорректный тип данных')
         result = 0
         return result
 
