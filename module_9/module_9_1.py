@@ -36,8 +36,8 @@ print(apply_all_func([6, 20, 15, 9], max, min))
 print(apply_all_func([6, 20, 15, 9], len, sum, sorted))
 
 # Пример работы некорректных данных:
-print(apply_all_func(["6", "20", "15", "9"], max, min))
-print(apply_all_func([6, 20, 15, 9], len, sum, setattr))
+# print(apply_all_func(["6", "20", "15", "9"], max, min))
+# print(apply_all_func([6, 20, 15, 9], len, sum, setattr))
 
 # Вывод на консоль:
 # {'max': 20, 'min': 6} {'len': 4, 'sum': 50, 'sorted': [6, 9, 15, 20]}
