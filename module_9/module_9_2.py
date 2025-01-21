@@ -25,10 +25,12 @@ second_result = [(first_str, second_str) for first_str in first_strings for seco
 # из объединённых вместе списков first_strings и second_strings.
 # Условие записи пары в словарь - чётная длина строки.
 
+third_result = {str_: len(str_) for str_ in (first_strings + second_strings) if len(str_) % 2 == 0}
+
 # Пример выполнения кода:
 print(first_result)
 print(second_result)
-# print(third_result)
+print(third_result)
 
 # Вывод на консоль:
 # [10, 8, 8]
