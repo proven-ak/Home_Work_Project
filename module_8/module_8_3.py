@@ -20,7 +20,9 @@
 # атрибутом message - сообщение. Оно будет выводиться при выбрасывании исключения.
 
 class IncorrectVinNumber(Exception):
-    pass
+    def __init__(self, message):
+        self.message = message
+        super().__init__(self.message)
 
 
 class IncorrectCarNumbers(Exception):
@@ -31,6 +33,7 @@ class Car:
     def __init__(self, model, vin_number):
         self.model = model
         self.__vin = vin_number  # Приватный атрибут
+        self.__numbers =
 
     def get_vin(self):  # Метод для доступа к приватному атрибуту
         return self.__vin
