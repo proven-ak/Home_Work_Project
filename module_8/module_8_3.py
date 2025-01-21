@@ -32,10 +32,16 @@ class IncorrectCarNumbers(Exception):
 
 
 class Car:
-    def __init__(self, model, vin_number):
+    def __init__(self, model, vin_number, numbers):
         self.model = model
-        self.__vin = vin_number  # Приватный атрибут
-        self.__numbers =
+
+        # Проверка и присваивание vin_number
+        if self.__is_valid_vin(vin_number):
+            self.__vin = vin_number
+
+        # Проверка и присваивание numbers
+        if self.__is_valid_numbers(numbers):
+            self.__numbers = numbers
 
     def get_vin(self):  # Метод для доступа к приватному атрибуту
         return self.__vin
