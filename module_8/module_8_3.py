@@ -23,6 +23,10 @@ class IncorrectVinNumber(Exception):
     pass
 
 
+class IncorrectCarNumbers(Exception):
+    pass
+
+
 class Car:
     def __init__(self, model, vin_number):
         self.model = model
@@ -52,8 +56,13 @@ class Car:
 # переданная строка должна состоять ровно из 6 символов.
 # Возвращает True, если исключения не были выброшены.
 
-    def __is_valid_numbers(numbers):
-        pass
+    def __is_valid_numbers(self, numbers):
+        if not isinstance(numbers, str):
+            raise IncorrectCarNumbers('Некорректный тип данных для номеров')
+        if len(numbers) != 6:
+            raise IncorrectCarNumbers('Неверная длина номера')
+        return True
+
 
 # ВАЖНО!
 # Методы __is_valid_vin и __is_valid_numbers должны вызываться и при создании объекта
