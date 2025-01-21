@@ -19,6 +19,10 @@
 # Классы исключений IncorrectVinNumber и IncorrectCarNumbers, объекты которых обладают
 # атрибутом message - сообщение. Оно будет выводиться при выбрасывании исключения.
 
+class IncorrectVinNumber(Exception):
+    pass
+
+
 class Car:
     def __init__(self, model, vin_number):
         self.model = model
@@ -34,8 +38,6 @@ class Car:
 # если переданное число находится не в диапазоне от 1000000 до 9999999 включительно.
 # Возвращает True, если исключения не были выброшены.
 
-    def __is_valid_vin(vin_number):
-        pass
 
 # __is_valid_numbers
 # Выбрасывает исключение IncorrectCarNumbers с сообщением 'Некорректный тип данных для номеров',
