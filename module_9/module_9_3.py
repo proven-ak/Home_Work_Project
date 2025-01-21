@@ -1,10 +1,7 @@
 
 # Задание по теме "Генераторные сборки"
-# Цель: понять механизм создания генераторных сборок и использования встроенных функций-генераторов.
 
-# Задача:
 # Дано 2 списка:
-
 first = ['Strings', 'Student', 'Computers']
 second = ['Строка', 'Урбан', 'Компьютер']
 
@@ -22,13 +19,9 @@ first_result = (len(f) - len(s) for f, s in zip(first, second) if len(f) != len(
 second_result = (len(first[i]) == len(second[i]) for i in range(0, len(first)))
 
 # Пример выполнения кода:
-
 print(list(first_result))
 print(list(second_result))
 
 # Вывод в консоль:
 # [1, 2]
 # [False, False, True]
-
-# Примечания:
-# Это небольшая практика, поэтому важность выполнения каждого условия обязательна.
