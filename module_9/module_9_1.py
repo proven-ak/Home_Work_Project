@@ -16,6 +16,7 @@ def apply_all_func(int_list, *functions):
     # Проверяем, что все элементы в int_list - числа
     if not all(isinstance(x, (int, float)) for x in int_list):
         print("Все элементы списка должны быть числами (int или float)")
+        return  # Выход из функции, если данные некорректны
 
     # Перебираем все функции из *functions
     for func in functions:
