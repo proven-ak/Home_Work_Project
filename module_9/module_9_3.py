@@ -19,10 +19,12 @@ first_result = (len(f) - len(s) for f, s in zip(first, second) if len(f) != len(
 # сравнения длин строк в одинаковых позициях из списков first и second.
 # Составьте эту сборку НЕ используя функцию zip. Используйте функции range и len.
 
+second_result = (len(first[i]) == len(second[i]) for i in range(0, len(first)))
+
 # Пример выполнения кода:
 
 print(list(first_result))
-# print(list(second_result))
+print(list(second_result))
 
 # Вывод в консоль:
 # [1, 2]
