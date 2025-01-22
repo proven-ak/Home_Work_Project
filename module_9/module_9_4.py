@@ -5,11 +5,13 @@
 # чтобы получить список совпадений символов двух строк.
 
 # Даны 2 строки:
-# first = 'Мама мыла раму'
-# second = 'Рамена мало было'
+first = 'Мама мыла раму'
+second = 'Рамена мало было'
 
 # lambda-функция для сравнения двух строк должен быть список совпадения букв в той же позиции
 # Где True - совпало, False - не совпало.
+
+print(list(map(lambda f, s: f == s, first, second)))
 
 # Вывод на консоль:
 # [False, True, True, False, False, False, False, False, True, False, False, False, False, False]
