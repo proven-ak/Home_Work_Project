@@ -23,6 +23,7 @@ print(list(map(lambda f, s: f == s, first, second)))
 # функцией write_everything(*data_set).
 
 # Функция get_advanced_writer принимает название файла для записи.
+def get_advanced_writer(file_name):
 
 # Функция добавляет в файл file_name все данные из data_set - параметр принимающий
 # неограниченное количество данных любого типа.
