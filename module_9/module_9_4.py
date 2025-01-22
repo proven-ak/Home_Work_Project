@@ -13,6 +13,7 @@ second = 'Рамена мало было'
 
 print(list(map(lambda f, s: f == s, first, second)))
 
+
 # Вывод на консоль:
 # [False, True, True, False, False, False, False, False, True, False, False, False, False, False]
 
@@ -24,16 +25,19 @@ print(list(map(lambda f, s: f == s, first, second)))
 
 # Функция get_advanced_writer принимает название файла для записи.
 def get_advanced_writer(file_name):
-
-# Функция добавляет в файл file_name все данные из data_set - параметр принимающий
-# неограниченное количество данных любого типа.
+    # Функция добавляет в файл file_name все данные из data_set - параметр принимающий
+    # неограниченное количество данных любого типа.
     def write_everything(*data_set):
-
-# Открытие файла для добавления записей.
-
-# Запись переданных данных(включая списки и строки) в файл построчно.
-
-# Возврат вложенной функции write_everything из get_advanced_writer
+        # Открытие файла для добавления записей.
+        with open(file_name, 'a', encoding='utf-8') as file:
+            # Запись переданных данных(включая списки и строки) в файл построчно.
+            file.write(f'File: {file_name}\n')
+            # Перебираем данные из data_set
+            for item in data_set:
+                # Записываем каждый элемент из data_set на новой строке
+                file.write(f'{item}\n')
+    # Возврат вложенной функции write_everything из get_advanced_writer
+    return write_everything
 
 
 # Тест код:
