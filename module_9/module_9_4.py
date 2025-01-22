@@ -27,6 +27,7 @@ def get_advanced_writer(file_name):
 
 # Функция добавляет в файл file_name все данные из data_set - параметр принимающий
 # неограниченное количество данных любого типа.
+    def write_everything(*data_set):
 
 # Открытие файла для добавления записей.
 
@@ -36,8 +37,8 @@ def get_advanced_writer(file_name):
 
 
 # Тест код:
-# write = get_advanced_writer('example.txt')
-# write('Это строчка', ['А', 'это', 'уже', 'число', 5, 'в', 'списке'])
+write = get_advanced_writer('example.txt')
+write('Это строчка', ['А', 'это', 'уже', 'число', 5, 'в', 'списке'])
 
 #############################################
 
