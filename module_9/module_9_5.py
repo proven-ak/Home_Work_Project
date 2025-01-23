@@ -9,8 +9,8 @@
 # Создайте пользовательский класс исключения StepValueError, который наследуется от ValueError.
 # Наследования достаточно, класс оставьте пустым при помощи оператора pass.
 
-StepValueError = ValueError()
-pass
+class StepValueError(Exception):
+    pass
 
 # Создайте класс Iterator, который обладает следующими свойствами:
 
@@ -25,7 +25,7 @@ class Iterator():
 def __init__(self, start, stop, step=1):
     self.start = start
     self.stop = stop
-    self.step = 1
+    self.step = step
     self.pointer = start
 
     if self.step == 0:
@@ -46,8 +46,7 @@ def __next__(self):
         return current
 
 
-class StepValueError(Exception):
-    pass
+
 
 # Методы:
 # __init__(self, start, stop, step=1) - принимающий значения старта и конца итерации, а также шага.
