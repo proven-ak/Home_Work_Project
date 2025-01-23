@@ -38,8 +38,12 @@ def __iter__ (self):
 
 def __next__(self):
     # увеличение атрибута pointer на step. В зависимости от знака атрибута step
-    if pointer > self.stop or pointer < self.stop:
-        return
+    if self.step > 0:
+        if self.pointer >= self.stop:
+            raise StopIteration
+        current = self.pointer
+        self.pointer += self.step
+        return current
 
 class StepValueError(Exception):
     pass
