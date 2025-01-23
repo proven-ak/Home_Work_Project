@@ -33,6 +33,8 @@ def __init__(self, start, stop, step=1):
 
 def __iter__ (self):
     # сброс значение pointer на start и возвращающий сам объект итератора.
+    self.pointer = self.start
+    return self
 
 def __next__(self):
     # увеличение атрибута pointer на step. В зависимости от знака атрибута step
