@@ -30,6 +30,9 @@ def __init__(self, start, stop, step=1):
     if self.step == 0:
         raise StepValueError('шаг не может быть равен 0')
 
+def __iter__ ():
+# сброс значение pointer на start и возвращающий сам объект итератора.
+
 class StepValueError(Exception):
     pass
 
