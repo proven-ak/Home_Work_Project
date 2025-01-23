@@ -22,28 +22,28 @@ class Iterator():
 # step - шаг, с которым совершается итерация.
 # pointer - указывает на текущее число в итерации (изначально start)
 
-def __init__(self, start, stop, step=1):
-    self.start = start
-    self.stop = stop
-    self.step = step
-    self.pointer = start
+    def __init__(self, start, stop, step=1):
+        self.start = start
+        self.stop = stop
+        self.step = step
+        self.pointer = start
 
-    if self.step == 0:
-        raise StepValueError('шаг не может быть равен 0')
+        if self.step == 0:
+            raise StepValueError('шаг не может быть равен 0')
 
-def __iter__ (self):
-    # сброс значение pointer на start и возвращающий сам объект итератора.
-    self.pointer = self.start
-    return self
+    def __iter__ (self):
+        # сброс значение pointer на start и возвращающий сам объект итератора.
+        self.pointer = self.start
+        return self
 
-def __next__(self):
-    # увеличение атрибута pointer на step. В зависимости от знака атрибута step
-    if self.step > 0:
-        if self.pointer >= self.stop:
-            raise StopIteration
-        current = self.pointer
-        self.pointer += self.step
-        return current
+    def __next__(self):
+        # увеличение атрибута pointer на step. В зависимости от знака атрибута step
+        if self.step > 0:
+            if self.pointer >= self.stop:
+                raise StopIteration
+            current = self.pointer
+            self.pointer += self.step
+            return current
 
 
 
