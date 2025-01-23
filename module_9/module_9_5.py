@@ -45,8 +45,12 @@ class Iterator():
             self.pointer += self.step
             return current
 
-
-
+        elif self.step < 0:
+            if self.pointer <= self.stop:
+                raise StopIteration
+            current = self.pointer
+            self.pointer += self.step
+            return current
 
 # Методы:
 # __init__(self, start, stop, step=1) - принимающий значения старта и конца итерации, а также шага.
