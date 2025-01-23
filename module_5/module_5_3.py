@@ -1,3 +1,4 @@
+
 class House:
     # Конструктор класса. Инициализирует имя дома и количество этажей.
     def __init__(self, name, number_of_floors):
@@ -12,87 +13,106 @@ class House:
     isinstance(other, House) - other указывает на объект типа House.
     """
 
+    def _check_other(self, other):
+        """Проверка, является ли other экземпляром House или целым числом (int)."""
+        if isinstance(other, House):
+            return "house"
+        elif isinstance(other, int):
+            return "int"
+        else:
+            print(f"Ошибка: нельзя работать с объектом типа {type(other)}")
+            return None
+
     # Метод для перехода на указанный этаж
     def go_to(self, new_floor):
-        # Проверяем, существует ли указанный этаж в доме
+        """Переход на указанный этаж."""
         if 1 <= new_floor <= self.number_of_floors:
-            print(new_floor)  # Печатаем номер этажа
+            print(f"Переход на этаж {new_floor}")
         else:
-            print("Такого этажа не существует")  # Сообщение об ошибке, если этаж вне диапазона
+            print("Такого этажа не существует")
 
     def __len__(self):
+        """Возвращает количество этажей в доме."""
         return self.number_of_floors
 
     def __str__(self):
+        """Строковое представление объекта."""
         return f'Название: {self.name}, кол-во этажей: {self.number_of_floors}'
 
     def _validate_number(self):
-        """Проверяет, является ли значение количества этажей целым числом (int)."""
+        """Проверяет, является ли количество этажей целым числом."""
         if not isinstance(self.number_of_floors, int):
             print(f"Ошибка: {self.number_of_floors} не является числом (int)")
             return False
         return True
 
+    # Перегрузка оператора равенства (==)
     def __eq__(self, other):
-        if isinstance(other, House):
+        other_type = self._check_other(other)
+        if other_type == "house":
             return self.number_of_floors == other.number_of_floors
-        elif isinstance(other, int):  # Добавим поддержку числовых значений
+        elif other_type == "int":
             return self.number_of_floors == other
-        else:
-            print("Ожидается объект (House) или число (int)")
-            return False  # Возвращаем False, если тип неверный
+        return False
 
+    # Перегрузка оператора меньше (<)
     def __lt__(self, other):
-        if isinstance(other, House):
+        other_type = self._check_other(other)
+        if other_type == "house":
             return self.number_of_floors < other.number_of_floors
-        elif isinstance(other, int):  # Если other - это число
+        elif other_type == "int":
             return self.number_of_floors < other
-        # В случае, если другой объект не является ни числом, ни домом
-        print(f"Ошибка сравнения: нельзя сравнивать {self.number_of_floors} с {other}")
         return False
 
+    # Перегрузка оператора меньше или равно (<=)
     def __le__(self, other):
-        if isinstance(other, House):
+        other_type = self._check_other(other)
+        if other_type == "house":
             return self.number_of_floors <= other.number_of_floors
-        elif isinstance(other, int):  # Если other - это число
+        elif other_type == "int":
             return self.number_of_floors <= other
-        print(f"Ошибка сравнения: нельзя сравнивать {self.number_of_floors} с {other}")
         return False
 
+    # Перегрузка оператора больше (>)
     def __gt__(self, other):
-        if isinstance(other, House):
+        other_type = self._check_other(other)
+        if other_type == "house":
             return self.number_of_floors > other.number_of_floors
-        elif isinstance(other, int):  # Если other - это число
+        elif other_type == "int":
             return self.number_of_floors > other
-        print(f"Ошибка сравнения: нельзя сравнивать {self.number_of_floors} с {other}")
         return False
 
+    # Перегрузка оператора больше или равно (>=)
     def __ge__(self, other):
-        if isinstance(other, House):
+        other_type = self._check_other(other)
+        if other_type == "house":
             return self.number_of_floors >= other.number_of_floors
-        elif isinstance(other, int):  # Если other - это число
+        elif other_type == "int":
             return self.number_of_floors >= other
-        print(f"Ошибка сравнения: нельзя сравнивать {self.number_of_floors} с {other}")
         return False
 
+    # Перегрузка оператора не равно (!=)
     def __ne__(self, other):
-        if isinstance(other, House):
+        other_type = self._check_other(other)
+        if other_type == "house":
             return self.number_of_floors != other.number_of_floors
-        elif isinstance(other, int):  # Если other - это число
+        elif other_type == "int":
             return self.number_of_floors != other
-        print(f"Ошибка сравнения: нельзя сравнивать {self.number_of_floors} с {other}")
         return False
 
+    # Перегрузка оператора сложения (+)
     def __add__(self, value):
         if isinstance(value, int):
             self.number_of_floors += value
         return self
 
+    # Перегрузка оператора сложения (в обратном порядке, например 10 + h2)
     def __radd__(self, value):
         if isinstance(value, int):
             self.number_of_floors += value
         return self
 
+    # Перегрузка оператора увеличения (+=)
     def __iadd__(self, value):
         if isinstance(value, int):
             self.number_of_floors += value
@@ -132,3 +152,19 @@ print(h1 > h2)  # Ошибка валидации и возврат False
 
 h2.number_of_floors = "sss"  # Еще одна ошибка
 print(h1 <= h2)  # Ошибка валидации и возврат False
+
+"""
+Вывод на консоль:
+Название: ЖК Эльбрус, кол-во этажей: 10
+Название: ЖК Акация, кол-во этажей: 20
+False
+Название: ЖК Эльбрус, кол-во этажей: 20
+True
+Название: ЖК Эльбрус, кол-во этажей: 30
+Название: ЖК Акация, кол-во этажей: 30
+False
+True
+False
+True
+False
+"""
