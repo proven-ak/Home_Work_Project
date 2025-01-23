@@ -30,7 +30,8 @@ def __init__(self, start, stop, step=1):
     if self.step == 0:
         raise StepValueError('шаг не может быть равен 0')
 
-
+class StepValueError(Exception):
+    pass
 
 # Методы:
 # __init__(self, start, stop, step=1) - принимающий значения старта и конца итерации, а также шага.
