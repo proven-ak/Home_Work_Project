@@ -11,7 +11,6 @@ def all_variants(text):
 
 
 # Пример работы функции:
-
 a = all_variants("abc")
 for i in a:
     print(i)
