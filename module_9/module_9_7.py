@@ -9,10 +9,19 @@
 
 
 def is_prime(func):
-    for i in range(2, res_):
-        if res_ // i == 0:
+    def wrapper(*args, **kwargs):
+        res_ = func(*args, **kwargs)
+        if res_ > 1:
+            for i in range(2, int(res_ ** 0.5) + 1):
+                if res_ % i == 0:
+                    print("Составное")
+                    break
+            else:
+                print("Простое")
+        else:
             print("Составное")
-    return func
+        return res_
+    return wrapper
 
 
 @is_prime
