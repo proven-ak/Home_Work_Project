@@ -63,7 +63,6 @@ for i in iter3:
     print(i, end=' ')
 print()
 
-
 iter4 = Iterator(5, 1, -1)
 for i in iter4:
     print(i, end=' ')
