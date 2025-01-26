@@ -9,22 +9,27 @@
 
 def is_prime(func):
     def wrapper(*args, **kwargs):
+        # Вызываем исходную функцию и получаем результат
         res_ = func(*args, **kwargs)
-        if res_ > 1:
-            for i in range(2, int(res_ ** 0.5) + 1):
+
+        # Проверяем, является ли число простым
+        if res_ > 1:    # Простое число должно быть больше 1
+            for i in range(2, int(res_ ** 0.5) + 1):    # Проверка делителей до корня числа
                 if res_ % i == 0:
                     print("Составное")
                     break
             else:
                 print("Простое")
         else:
-            print("Составное")
-        return res_
+            print("Составное")  # Числа <= 1 не являются простыми
+
+        return res_  # Возвращаем результат исходной функции
     return wrapper
 
 
 @is_prime
 def sum_three(a, b, c):
+    # Функция, которая складывает три числ
     return a + b + c
 
 
