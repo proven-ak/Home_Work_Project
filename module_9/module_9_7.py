@@ -7,6 +7,20 @@
 # Функция декоратор (is_prime), которая распечатывает "Простое",
 # если результат 1ой функции будет простым числом и "Составное" в противном случае.
 
+
+def is_prime(func):
+    for i in range(2, res_):
+        if res_ // i == 0:
+            print("Составное")
+    return func
+
+
+@is_prime
+def sum_three(a, b, c):
+    return a + b + c
+
+
+
 # Пример:
 result = sum_three(2, 3, 6)
 print(result)
