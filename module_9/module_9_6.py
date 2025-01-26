@@ -10,33 +10,27 @@
 и возвращает объект-генератор, при каждой итерации которого будет возвращаться
 подпоследовательности переданной строки.
 
-Пример из лекции:
-
-def fibonacci_v1(n):
-    a, b = 0, 1
-    for i in range(n):
-        yield a
-        a, b = b, a + b
-
-
-
 Пункты задачи:
 Напишите функцию-генератор all_variants(text).
 Опишите логику работы внутри функции all_variants.
 Вызовите функцию all_variants и выполните итерации.
 """
+
 # Пример результата выполнения программы:
 
-def all_variants(text):
-    for start in range(len(text)):
-        for end in range(start + 1, len(text) + 1):
-            yield text[start:end]
+
+# def all_variants(text):
+#     for _len in range(len(text)):
+#         for _start in range(len(text) + 1):
+#             yield text[_start:_len]
+
 
 # Пример работы функции:
 
-a = all_variants("abc")
-for i in a:
-print(i)
+# a = all_variants("abc")
+# for i in a:
+#     print(i)
+
 """
 Вывод на консоль:
 a
@@ -45,7 +39,8 @@ c
 ab
 bc
 abc
-
-Примечания:
-Для функции генератора используйте оператор yield.
 """
+text = "abc"
+for _len in range(1, len(text) + 1):  # Длина подстроки от 1 до длины строки
+    for _start in range(len(text) - _len + 1):  # Все начальные индексы для данной длины
+        print(text[_start:_start + _len])  # Подстрока от _start длиной _len
